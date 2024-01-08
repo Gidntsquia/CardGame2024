@@ -3,9 +3,8 @@
 // Hold data for a monster that was summoned to the field. Tracks it's stats,
 // including current health.
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MonsterActive : MonoBehaviour
 {

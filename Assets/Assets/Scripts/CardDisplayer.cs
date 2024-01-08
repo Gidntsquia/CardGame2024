@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CardDisplayer : MonoBehaviour
 {
-    public Card cardIdentity;
+    public MonsterCard cardIdentity;
     public TMP_Text healthField;
     public TMP_Text powerField;
     public TMP_Text costField;

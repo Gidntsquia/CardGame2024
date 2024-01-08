@@ -9,7 +9,7 @@ using UnityEngine.UI;
 // This creates an menu entry in the Unity editor when you right click in the 
 // "Project" tab. It's called "CardSystem/Card".
 [CreateAssetMenu(fileName = "newMonsterCard", menuName = "CardSystem/MonsterCard", order = 1)]
-public class MonsterCard : ScriptableObject
+public class MonsterCard : Card
 {
     public int power = 1;
     public int health = 1;
@@ -21,7 +21,6 @@ public class MonsterCard : ScriptableObject
                $"Power: {power}\n" +
                $"Health: {health}\n" +
                $"Region: {region}\n" +
-               $"Is Monster: {isMonster}\n" +
                $"Flavor Text: {flavorText}\n";
     }
 

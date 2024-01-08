@@ -8,7 +8,7 @@ using UnityEngine.UI;
 // This creates an menu entry in the Unity editor when you right click in the 
 // "Project" tab. It's called "CardSystem/Card".
 [CreateAssetMenu(fileName = "newCard", menuName = "CardSystem/Card", order = 1)]
-public class Card : ScriptableObject
+public abstract class Card : ScriptableObject
 {
     public int manaCost = 1;
     // TODO: Add this
@@ -47,7 +47,6 @@ public class Card : ScriptableObject
         return $"Card Info:\n" +
                $"Mana Cost: {manaCost}\n" +
                $"Region: {region}\n" +
-               $"Is Monster: {isMonster}\n" +
                $"Flavor Text: {flavorText}\n";
     }
 
