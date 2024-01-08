@@ -25,18 +25,35 @@ public class Card : ScriptableObject
     }
 
     public Region region;
+    public bool isMonster = true;
 
     [TextArea]
     public string flavorText = "";
     public Image image;
 
-    public enum Rarity
+    // public enum Rarity
+    // {
+    //     Common,
+    //     Rare,
+    //     Epic,
+    //     Legendary
+    // }
+
+    // public Rarity rarity = Rarity.Common;
+
+    // SummonData includes play animation, idle animation, attack animation,
+    // sound effects
+    // public SummonData summonData;
+
+    public override string ToString()
     {
-        Common,
-        Rare,
-        Epic,
-        Legendary
+        return $"Card Info:\n" +
+               $"Mana Cost: {manaCost}\n" +
+               $"Power: {power}\n" +
+               $"Health: {health}\n" +
+               $"Region: {region}\n" +
+               $"Is Monster: {isMonster}\n" +
+               $"Flavor Text: {flavorText}\n";
     }
 
-    public Rarity rarity = Rarity.Common;
 }
