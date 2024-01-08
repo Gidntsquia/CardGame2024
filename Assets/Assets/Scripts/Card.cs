@@ -11,8 +11,6 @@ using UnityEngine.UI;
 public class Card : ScriptableObject
 {
     public int manaCost = 1;
-    public int power = 1;
-    public int health = 1;
     // TODO: Add this
     // public CardAbility cardAbility;
     public enum Region
@@ -25,7 +23,6 @@ public class Card : ScriptableObject
     }
 
     public Region region;
-    public bool isMonster = true;
 
     [TextArea]
     public string flavorText = "";
@@ -49,8 +46,6 @@ public class Card : ScriptableObject
     {
         return $"Card Info:\n" +
                $"Mana Cost: {manaCost}\n" +
-               $"Power: {power}\n" +
-               $"Health: {health}\n" +
                $"Region: {region}\n" +
                $"Is Monster: {isMonster}\n" +
                $"Flavor Text: {flavorText}\n";
