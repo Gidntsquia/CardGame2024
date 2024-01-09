@@ -28,6 +28,7 @@ public class LaneBehavior : MonoBehaviour
         doLaneCombat();
     }
 
+    // Manually create a hero and enemy monster for testing purposes.
     private void createTestMonsters()
     {
         GameObject heroMonster = Instantiate(monsterPrefab);
