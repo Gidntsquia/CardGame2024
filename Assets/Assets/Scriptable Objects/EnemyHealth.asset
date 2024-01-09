@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14b9b1fec0093478d993ee82bfce5aac, type: 3}
-  m_Name: TurboMonsterDestroyer
+  m_Script: {fileID: 11500000, guid: 48fe24469eeef4028908fee38af15406, type: 3}
+  m_Name: EnemyHealth
   m_EditorClassIdentifier: 
-  manaCost: 8
-  region: 1
-  flavorText: Destroy
-  image: {fileID: 0}
-  power: 10
-  health: 9
+  health: 20

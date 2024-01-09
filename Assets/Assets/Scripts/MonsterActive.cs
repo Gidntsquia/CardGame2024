@@ -69,17 +69,37 @@ public class MonsterActive : MonoBehaviour
         }
     }
 
+    // Deal damage to the frontmost enemy, otherwise deal damage to the 
+    // opponent's face.
+    public void attack(MonsterActive enemyFront, MonsterActive enemyBack,
+                        HealthSystem enemyHealthSystem)
+    {
+        if (enemyFront != null)
+        {
+            enemyFront.reduceHealth(power);
+        }
+        else if (enemyBack != null)
+        {
+            enemyFront.reduceHealth(power);
+        }
+        else
+        {
+            enemyHealthSystem.takeDamage(power);
+        }
+    }
+
+
 
     // ToString method to print values
     public override string ToString()
     {
         return $"Monster Active Info:\n" +
-               $"Base Power: {basePower}\n" +
-               $"Base Health: {baseHealth}\n" +
-               $"Image: {image}\n" +
-               $"Power Buffs: {powerBuffs}\n" +
-               $"Health Buffs: {healthBuffs}\n" +
-               $"Current Power: {power}\n" +
-               $"Current Health: {health}\n";
+               $"Base Power: {basePower}, " +
+               $"Base Health: {baseHealth}, " +
+               $"Image: {image}, " +
+               $"Power Buffs: {powerBuffs}, " +
+               $"Health Buffs: {healthBuffs}, " +
+               $"Current Power: {power}, " +
+               $"Current Health: {health}";
     }
 }
