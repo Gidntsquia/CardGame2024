@@ -19,11 +19,25 @@ public class MonsterActive : MonoBehaviour
     public bool isDead = false;
 
     // Initialize values
-    public void Initialize(int myBasePower, int myBaseHealth, Image myImage, int myPowerBuffs = 0, int myHealthBuffs = 0)
+    // public void Initialize(int myBasePower, int myBaseHealth, Image myImage, int myPowerBuffs = 0, int myHealthBuffs = 0)
+    // {
+    //     basePower = myBasePower;
+    //     baseHealth = myBaseHealth;
+    //     image = myImage;
+    //     powerBuffs = myPowerBuffs;
+    //     healthBuffs = myHealthBuffs;
+
+    //     // Calculate current power and health
+    //     power = basePower + powerBuffs;
+    //     health = baseHealth + healthBuffs;
+    //     isDead = false;
+    // }
+
+    public void Initialize(MonsterCard monsterCardData, int myPowerBuffs = 0, int myHealthBuffs = 0)
     {
-        basePower = myBasePower;
-        baseHealth = myBaseHealth;
-        image = myImage;
+        basePower = monsterCardData.power;
+        baseHealth = monsterCardData.health;
+        image = monsterCardData.image;
         powerBuffs = myPowerBuffs;
         healthBuffs = myHealthBuffs;
 
