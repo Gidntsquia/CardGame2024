@@ -13,19 +13,50 @@ public class LaneBehavior : MonoBehaviour
     public Transform farMonsterSpot;
     public HealthSystem heroHealthSystem;
     public HealthSystem enemyHealthSystem;
-    private MonsterActive heroBack;
-    private MonsterActive heroFront;
-    private MonsterActive enemyBack;
-    private MonsterActive enemyFront;
+    // private MonsterActive heroBack;
+    // private MonsterActive heroFront;
+    // private MonsterActive enemyBack;
+    // private MonsterActive enemyFront;
 
     public MonsterCard heroTest;
     public MonsterCard enemyTest;
 
-    // Start is called before the first frame update
-    void Start()
+    public enum Player
+    {
+        Hero,
+        Enemy
+    }
+
+    public enum Location
+    {
+        Front,
+        Back
+    }
+
+    private Dictionary<(Player, Location), MonsterActive> monstersMap =
+            new Dictionary<(Player, Location), MonsterActive>();
+
+    public void summonMonster(MonsterCard monsterCardData, Player player, Location location)
+    {
+        // Create a new monster
+        GameObject monsterObject = Instantiate(monsterPrefab);
+
+        // Set its parent based on the location
+        Transform monsterSpot = player == Player.Hero ? nearMonsterSpot : farMonsterSpot;
+        monsterObject.transform.SetParent(monsterSpot);
+
+        // Get the MonsterActive component and initialize it
+        MonsterActive monster = monsterObject.GetComponent<MonsterActive>();
+        monster.Initialize(monsterCardData);
+
+        // Store the monster in the dictionary
+        monstersMap[(player, location)] = monster;
+    }
+
+    private void Start()
     {
         createTestMonsters();
-        doLaneCombat();
+        // doLaneCombat();
     }
 
     private void Update()
@@ -34,6 +65,7 @@ public class LaneBehavior : MonoBehaviour
         // Debugging command
         if (Input.GetKeyDown(KeyCode.F))
         {
+            print("Combat!");
             doLaneCombat();
         }
     }
@@ -41,66 +73,75 @@ public class LaneBehavior : MonoBehaviour
     // Manually create a hero and enemy monster for testing purposes.
     private void createTestMonsters()
     {
-        GameObject heroMonster = Instantiate(monsterPrefab);
-        heroMonster.transform.SetParent(nearMonsterSpot);
+        // Create hero monster
+        summonMonster(heroTest, Player.Hero, Location.Front);
 
-        heroFront = heroMonster.GetComponent<MonsterActive>();
-        heroFront.Initialize(heroTest);
-
-        // GameObject enemyMonster = Instantiate(monsterPrefab);
-        // enemyMonster.transform.SetParent(farMonsterSpot);
-
-        // enemyFront = enemyMonster.GetComponent<MonsterActive>();
-        // enemyFront.Initialize(enemyTest);
-
+        // Create enemy monster
+        summonMonster(enemyTest, Player.Enemy, Location.Front);
     }
+
+
 
     // Do combat for this lane.
     // TODO: Turn this into an IEnumerator and make it a Coroutine f/ animations.
-    // TODO: Make herofront/back into an array of hero monsters.
     private void doLaneCombat()
     {
         // Note this order-- this is a key mechanic
-
-        // Handle attacks
-        heroFront?.attack(enemyFront, enemyBack, enemyHealthSystem);
-        heroBack?.attack(enemyFront, enemyBack, enemyHealthSystem);
-
-        enemyFront?.attack(heroFront, heroBack, heroHealthSystem);
-        enemyBack?.attack(heroFront, heroBack, heroHealthSystem);
-
-        // Handle monster deaths
-        // TODO: Do this with events maybe
-        if (heroFront != null && heroFront.isDead)
-        {
-            Debug.Log($"Hero Front has died: {heroFront}");
-            Destroy(heroFront.gameObject);
-            heroFront = null;
-        }
-
-        if (heroBack != null && heroBack.isDead)
-        {
-            Debug.Log($"Hero Back has died: {heroBack}");
-            Destroy(heroBack.gameObject);
-            heroBack = null;
-        }
-
-        if (enemyFront != null && enemyFront.isDead)
-        {
-            Debug.Log($"Enemy Front has died: {enemyFront}");
-            Destroy(enemyFront.gameObject);
-            enemyFront = null;
-        }
-
-        if (enemyBack != null && enemyBack.isDead)
-        {
-            Debug.Log($"Enemy Back has died: {enemyBack}");
-            Destroy(enemyBack.gameObject);
-            enemyBack = null;
-        }
+        processAttack(Player.Hero, Location.Front);
+        processAttack(Player.Hero, Location.Back);
+        processAttack(Player.Enemy, Location.Front);
+        processAttack(Player.Enemy, Location.Back);
 
 
+        processDeath(Player.Hero, Location.Front);
+        processDeath(Player.Hero, Location.Back);
+        processDeath(Player.Enemy, Location.Front);
+        processDeath(Player.Enemy, Location.Back);
     }
+
+    private void processAttack(Player player, Location location)
+    {
+        if (monstersMap.TryGetValue((player, location), out var monster))
+        {
+            // Skip monsters that are null or dead
+            if (monster == null || monster.isDead)
+                return;
+
+            // Handle attacks based on the player
+            switch (player)
+            {
+                case Player.Hero:
+                    monster.attack(monstersMap.TryGetValue((Player.Enemy, Location.Front), out var enemyFrontMonster) ? enemyFrontMonster : null,
+                                    monstersMap.TryGetValue((Player.Enemy, Location.Back), out var enemyBackMonster) ? enemyBackMonster : null,
+                                    enemyHealthSystem);
+                    break;
+
+                case Player.Enemy:
+                    monster.attack(monstersMap.TryGetValue((Player.Hero, Location.Front), out var heroFrontMonster) ? heroFrontMonster : null,
+                                    monstersMap.TryGetValue((Player.Hero, Location.Back), out var heroBackMonster) ? heroBackMonster : null,
+                                    heroHealthSystem);
+                    break;
+            }
+
+
+        }
+    }
+
+    private void processDeath(Player player, Location location)
+    {
+        if (monstersMap.TryGetValue((player, location), out MonsterActive monster))
+        {
+            // Skip monsters that are null or alive
+            if (monster == null || !monster.isDead)
+                return;
+
+            Debug.Log($"{player} {location} has died: {monster}");
+            Destroy(monster.gameObject);
+            monstersMap.Remove((player, location));
+        }
+    }
+
+
 
 
 }

@@ -66,6 +66,7 @@ public class MonsterActive : MonoBehaviour
         {
             // TODO: replace this with an event
             isDead = true;
+            print($"{name} is dead");
         }
     }
 
