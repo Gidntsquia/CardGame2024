@@ -19,9 +19,14 @@ public class CardDisplayer : MonoBehaviour
         healthField.text = cardIdentity.health.ToString();
         powerField.text = cardIdentity.power.ToString();
         costField.text = cardIdentity.manaCost.ToString();
+
         if (cardIdentity.image == null && nameField != null)
         {
             nameField.text = cardIdentity.name;
+        }
+        else
+        {
+
         }
 
     }

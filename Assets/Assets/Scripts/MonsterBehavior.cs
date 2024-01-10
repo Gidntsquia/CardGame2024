@@ -6,11 +6,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MonsterActive : MonoBehaviour
+public class MonsterBehavior : MonoBehaviour
 {
     private int basePower;
     private int baseHealth;
     private Image image;
+    public string monsterName;
 
     public int power;
     public int health;
@@ -19,20 +20,6 @@ public class MonsterActive : MonoBehaviour
     public bool isDead = false;
 
     // Initialize values
-    // public void Initialize(int myBasePower, int myBaseHealth, Image myImage, int myPowerBuffs = 0, int myHealthBuffs = 0)
-    // {
-    //     basePower = myBasePower;
-    //     baseHealth = myBaseHealth;
-    //     image = myImage;
-    //     powerBuffs = myPowerBuffs;
-    //     healthBuffs = myHealthBuffs;
-
-    //     // Calculate current power and health
-    //     power = basePower + powerBuffs;
-    //     health = baseHealth + healthBuffs;
-    //     isDead = false;
-    // }
-
     public void Initialize(MonsterCard monsterCardData, int myPowerBuffs = 0, int myHealthBuffs = 0)
     {
         basePower = monsterCardData.power;
@@ -40,6 +27,8 @@ public class MonsterActive : MonoBehaviour
         image = monsterCardData.image;
         powerBuffs = myPowerBuffs;
         healthBuffs = myHealthBuffs;
+
+        monsterName = monsterCardData.name;
 
         // Calculate current power and health
         power = basePower + powerBuffs;
@@ -72,7 +61,7 @@ public class MonsterActive : MonoBehaviour
 
     // Deal damage to the frontmost enemy, otherwise deal damage to the 
     // opponent's face.
-    public void attack(MonsterActive enemyFront, MonsterActive enemyBack,
+    public void attack(MonsterBehavior enemyFront, MonsterBehavior enemyBack,
                         HealthSystem enemyHealthSystem)
     {
         if (enemyFront != null)

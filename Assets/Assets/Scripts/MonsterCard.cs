@@ -4,7 +4,6 @@
 // once it's health goes to 0.
 
 using UnityEngine;
-using UnityEngine.UI;
 
 // This creates an menu entry in the Unity editor when you right click in the 
 // "Project" tab. It's called "CardSystem/Card".

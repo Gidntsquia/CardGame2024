@@ -33,14 +33,14 @@ public class LaneBehavior : MonoBehaviour
         Back
     }
 
-    private Dictionary<(Player, Location), MonsterActive> monstersMap =
-            new Dictionary<(Player, Location), MonsterActive>();
+    private Dictionary<(Player, Location), MonsterBehavior> monstersMap =
+            new Dictionary<(Player, Location), MonsterBehavior>();
 
     // Summon a monster at a particular location
     public void summonMonster(MonsterCard monsterCardData, Player player, Location location)
     {
         // Destroy existing monster
-        if (monstersMap.TryGetValue((player, location), out MonsterActive existingMonster))
+        if (monstersMap.TryGetValue((player, location), out MonsterBehavior existingMonster))
         {
             Destroy(existingMonster.gameObject);
         }
@@ -52,8 +52,8 @@ public class LaneBehavior : MonoBehaviour
         Transform monsterSpot = player == Player.Hero ? nearMonsterSpot : farMonsterSpot;
         monsterObject.transform.SetParent(monsterSpot);
 
-        // Get the MonsterActive component and initialize it
-        MonsterActive monster = monsterObject.GetComponent<MonsterActive>();
+        // Get the MonsterBehavior component and initialize it
+        MonsterBehavior monster = monsterObject.GetComponent<MonsterBehavior>();
         monster.Initialize(monsterCardData);
 
         // Store the monster in the dictionary
@@ -115,7 +115,7 @@ public class LaneBehavior : MonoBehaviour
 
     private void processAttack(Player player, Location location)
     {
-        if (monstersMap.TryGetValue((player, location), out MonsterActive monster))
+        if (monstersMap.TryGetValue((player, location), out MonsterBehavior monster))
         {
             // Skip monsters that are null or dead
             if (monster == null || monster.isDead)
@@ -143,7 +143,7 @@ public class LaneBehavior : MonoBehaviour
 
     private void processDeath(Player player, Location location)
     {
-        if (monstersMap.TryGetValue((player, location), out MonsterActive monster))
+        if (monstersMap.TryGetValue((player, location), out MonsterBehavior monster))
         {
             // Skip monsters that are null or alive
             if (monster == null || !monster.isDead)
