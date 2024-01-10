@@ -42,6 +42,7 @@ public abstract class Card : ScriptableObject
     // sound effects
     // public SummonData summonData;
 
+    // Use this to print out the values of this card.
     public override string ToString()
     {
         return $"Card Info:\n" +

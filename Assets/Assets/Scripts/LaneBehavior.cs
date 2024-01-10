@@ -11,8 +11,8 @@ public class LaneBehavior : MonoBehaviour
     public GameObject monsterPrefab;
     public Transform nearMonsterSpot;
     public Transform farMonsterSpot;
-    public HealthSystem heroHealthSystem;
-    public HealthSystem enemyHealthSystem;
+    public PlayerHealth heroHealthSystem;
+    public PlayerHealth enemyHealthSystem;
     // private MonsterActive heroBack;
     // private MonsterActive heroFront;
     // private MonsterActive enemyBack;

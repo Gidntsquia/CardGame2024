@@ -6,6 +6,7 @@ public class PlayerDeck : MonoBehaviour
 {
     public Deck baseDeck;
     public List<Card> deck;
+    public Transform hand;
 
 
     // Start is called before the first frame update
@@ -26,12 +27,7 @@ public class PlayerDeck : MonoBehaviour
         shuffle();
     }
 
-    // Shuffle the deck
-    public void shuffle()
-    {
-        ShuffleList(deck);
 
-    }
 
     // Get the top card off the deck.
     // The deck is like a stack, so I'm using stack terminology here.
@@ -46,12 +42,18 @@ public class PlayerDeck : MonoBehaviour
         return topCard;
     }
 
-    public void addCard()
+    public void addCardToDeck()
     {
 
     }
 
 
+    // Shuffle the deck
+    public void shuffle()
+    {
+        ShuffleList(deck);
+
+    }
 
     private void ShuffleList<T>(List<T> ts)
     {

@@ -5,7 +5,7 @@
 
 using UnityEngine;
 
-public class Hand : MonoBehaviour
+public class HandManager : MonoBehaviour
 {
     public int handSize;
     public PlayerDeck gameDeck;
@@ -22,12 +22,16 @@ public class Hand : MonoBehaviour
             GameObject newCardObject = Instantiate(cardObject);
             newCardObject.transform.SetParent(transform);
 
+            // Set the new card's identity 
+            CardBehavior newCardBehavior = newCardObject.GetComponent<CardBehavior>();
+            newCardBehavior.cardIdentity = newCard;
+
             // Display the card's values
             CardDisplayer newCardDisplayer = newCardObject.GetComponent<CardDisplayer>();
-            newCardDisplayer.cardIdentity = newCard;
-            newCardDisplayer.displayValues();
+            newCardDisplayer.displayValues(newCard);
 
             // Update hand size
+            // TODO: Need to reduce this when cards are played.
             handSize += 1;
         }
     }

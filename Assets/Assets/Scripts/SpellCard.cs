@@ -9,6 +9,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "newSpellCard", menuName = "CardSystem/SpellCard", order = 1)]
 public class SpellCard : Card
 {
+    // Use this to print out the values of this card.
     public override string ToString()
     {
         return $"Card Info:\n" +

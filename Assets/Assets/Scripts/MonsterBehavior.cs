@@ -62,7 +62,7 @@ public class MonsterBehavior : MonoBehaviour
     // Deal damage to the frontmost enemy, otherwise deal damage to the 
     // opponent's face.
     public void attack(MonsterBehavior enemyFront, MonsterBehavior enemyBack,
-                        HealthSystem enemyHealthSystem)
+                        PlayerHealth enemyHealthSystem)
     {
         if (enemyFront != null)
         {
@@ -80,7 +80,7 @@ public class MonsterBehavior : MonoBehaviour
 
 
 
-    // ToString method to print values
+    // Use this to print out the values of this card.
     public override string ToString()
     {
         return $"Monster Active Info:\n" +

@@ -5,10 +5,11 @@
 using UnityEngine;
 
 // This creates an menu entry in the Unity editor when you right click in the 
-// "Project" tab. It's called "CardSystem/Deck".
-[CreateAssetMenu(fileName = "newHealthSystem", menuName = "HealthSystem", order = 1)]
-public class HealthSystem : ScriptableObject
+// "Project" tab. It's called "PlayerHealth".
+[CreateAssetMenu(fileName = "newPlayerHealth", menuName = "PlayerHealth", order = 1)]
+public class PlayerHealth : ScriptableObject
 {
+    // Change this value to change players' max health.
     public static int maxHealth = 20;
     public int health = maxHealth;
 
@@ -23,6 +24,7 @@ public class HealthSystem : ScriptableObject
         }
     }
 
+    // Reset health to max on scene load (i.e. when the game starts).
     private void OnEnable()
     {
         health = maxHealth;

@@ -4,19 +4,18 @@
 
 using UnityEngine;
 
-public class CardDragger : MonoBehaviour
+public class CardBehavior : MonoBehaviour
 {
+    public Card cardIdentity;
     private Transform parent;
     private const string LANE_TAG = "Lane";
     private LaneBehavior currLane = null;
-    private Card cardIdentity;
 
     private void Start()
     {
         parent = transform.parent;
         // TODO: Figure out what to do if it's a spell card.
         // TODO: Make CardDragger and MonsterBehavior the authorities on their values
-        cardIdentity = GetComponent<CardDisplayer>().cardIdentity;
     }
 
     private void OnMouseDown()
