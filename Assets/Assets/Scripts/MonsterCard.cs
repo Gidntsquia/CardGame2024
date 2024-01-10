@@ -6,7 +6,7 @@
 using UnityEngine;
 
 // This creates an menu entry in the Unity editor when you right click in the 
-// "Project" tab. It's called "CardSystem/Card".
+// "Project" tab. It's called "CardSystem/MonsterCard".
 [CreateAssetMenu(fileName = "newMonsterCard", menuName = "CardSystem/MonsterCard", order = 1)]
 public class MonsterCard : Card
 {

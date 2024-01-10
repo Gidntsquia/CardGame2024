@@ -6,7 +6,6 @@ public class PlayerDeck : MonoBehaviour
 {
     public Deck baseDeck;
     public List<Card> deck;
-    public Transform hand;
 
 
     // Start is called before the first frame update
@@ -52,9 +51,10 @@ public class PlayerDeck : MonoBehaviour
     public void shuffle()
     {
         ShuffleList(deck);
-
     }
 
+    // Code by Smooth-P
+    // https://forum.unity.com/threads/clever-way-to-shuffle-a-list-t-in-one-line-of-c-code.241052/
     private void ShuffleList<T>(List<T> ts)
     {
         var count = ts.Count;

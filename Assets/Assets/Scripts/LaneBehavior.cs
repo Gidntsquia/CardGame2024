@@ -2,23 +2,17 @@
 // 
 // Handles all the behavior of one lane, including lane combat.
 
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LaneBehavior : MonoBehaviour
 {
     public GameObject monsterPrefab;
-    public Transform nearMonsterSpot;
-    public Transform farMonsterSpot;
+    public Transform heroMonsterSpot;
+    public Transform enemyMonsterSpot;
     public PlayerHealth heroHealthSystem;
     public PlayerHealth enemyHealthSystem;
-    // private MonsterActive heroBack;
-    // private MonsterActive heroFront;
-    // private MonsterActive enemyBack;
-    // private MonsterActive enemyFront;
-
-    public MonsterCard heroTest;
+    // public MonsterCard heroTest;
     public MonsterCard enemyTest;
 
     public enum Player
@@ -33,14 +27,16 @@ public class LaneBehavior : MonoBehaviour
         Back
     }
 
-    private Dictionary<(Player, Location), MonsterBehavior> monstersMap =
+    // Each of the 4 locations can be saved to this map.
+    private Dictionary<(Player, Location), MonsterBehavior> laneMap =
             new Dictionary<(Player, Location), MonsterBehavior>();
+
 
     // Summon a monster at a particular location
     public void summonMonster(MonsterCard monsterCardData, Player player, Location location)
     {
         // Destroy existing monster
-        if (monstersMap.TryGetValue((player, location), out MonsterBehavior existingMonster))
+        if (laneMap.TryGetValue((player, location), out MonsterBehavior existingMonster))
         {
             Destroy(existingMonster.gameObject);
         }
@@ -49,7 +45,7 @@ public class LaneBehavior : MonoBehaviour
         GameObject monsterObject = Instantiate(monsterPrefab);
 
         // Set its parent based on the location
-        Transform monsterSpot = player == Player.Hero ? nearMonsterSpot : farMonsterSpot;
+        Transform monsterSpot = player == Player.Hero ? heroMonsterSpot : enemyMonsterSpot;
         monsterObject.transform.SetParent(monsterSpot);
 
         // Get the MonsterBehavior component and initialize it
@@ -57,7 +53,7 @@ public class LaneBehavior : MonoBehaviour
         monster.Initialize(monsterCardData);
 
         // Store the monster in the dictionary
-        monstersMap[(player, location)] = monster;
+        laneMap[(player, location)] = monster;
     }
 
 
@@ -69,9 +65,9 @@ public class LaneBehavior : MonoBehaviour
 
     private void Start()
     {
-        // createTestMonsters();
-        // doLaneCombat();
+        createTestMonsters();
     }
+
 
     private void Update()
     {
@@ -88,7 +84,7 @@ public class LaneBehavior : MonoBehaviour
     private void createTestMonsters()
     {
         // Create hero monster
-        summonMonster(heroTest, Player.Hero, Location.Front);
+        // summonMonster(heroTest, Player.Hero, Location.Front);
 
         // Create enemy monster
         summonMonster(enemyTest, Player.Enemy, Location.Front);
@@ -113,26 +109,31 @@ public class LaneBehavior : MonoBehaviour
         processDeath(Player.Enemy, Location.Back);
     }
 
+    // Apply attack for a monster a particular location.
     private void processAttack(Player player, Location location)
     {
-        if (monstersMap.TryGetValue((player, location), out MonsterBehavior monster))
+        if (laneMap.TryGetValue((player, location), out MonsterBehavior monster))
         {
-            // Skip monsters that are null or dead
-            if (monster == null || monster.isDead)
+            // Skip if there is no monster here
+            if (monster == null)
                 return;
 
             // Handle attacks based on the player
             switch (player)
             {
                 case Player.Hero:
-                    monster.attack(monstersMap.TryGetValue((Player.Enemy, Location.Front), out var enemyFrontMonster) ? enemyFrontMonster : null,
-                                    monstersMap.TryGetValue((Player.Enemy, Location.Back), out var enemyBackMonster) ? enemyBackMonster : null,
+                    monster.attack(laneMap.TryGetValue((Player.Enemy, Location.Front),
+                                        out MonsterBehavior enemyFrontMonster) ? enemyFrontMonster : null,
+                                    laneMap.TryGetValue((Player.Enemy, Location.Back),
+                                        out MonsterBehavior enemyBackMonster) ? enemyBackMonster : null,
                                     enemyHealthSystem);
                     break;
 
                 case Player.Enemy:
-                    monster.attack(monstersMap.TryGetValue((Player.Hero, Location.Front), out var heroFrontMonster) ? heroFrontMonster : null,
-                                    monstersMap.TryGetValue((Player.Hero, Location.Back), out var heroBackMonster) ? heroBackMonster : null,
+                    monster.attack(laneMap.TryGetValue((Player.Hero, Location.Front),
+                                        out MonsterBehavior heroFrontMonster) ? heroFrontMonster : null,
+                                    laneMap.TryGetValue((Player.Hero, Location.Back),
+                                        out MonsterBehavior heroBackMonster) ? heroBackMonster : null,
                                     heroHealthSystem);
                     break;
             }
@@ -141,9 +142,11 @@ public class LaneBehavior : MonoBehaviour
         }
     }
 
+    // Kill any monsters that have died.
+    // TODO: Play a death animation here if monster dies. 
     private void processDeath(Player player, Location location)
     {
-        if (monstersMap.TryGetValue((player, location), out MonsterBehavior monster))
+        if (laneMap.TryGetValue((player, location), out MonsterBehavior monster))
         {
             // Skip monsters that are null or alive
             if (monster == null || !monster.isDead)
@@ -151,11 +154,8 @@ public class LaneBehavior : MonoBehaviour
 
             Debug.Log($"{player} {location} has died: {monster}");
             Destroy(monster.gameObject);
-            monstersMap.Remove((player, location));
+            laneMap.Remove((player, location));
         }
     }
-
-
-
 
 }

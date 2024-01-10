@@ -1,6 +1,6 @@
 // Code created by Jaxon Lee
 //
-// Handles dragging and dropping a card.
+// Handles dragging and summoning a card.
 
 using UnityEngine;
 
@@ -18,10 +18,13 @@ public class CardBehavior : MonoBehaviour
         // TODO: Make CardDragger and MonsterBehavior the authorities on their values
     }
 
+    // Allow card to freely move (by removing it from its parent's layout group)
     private void OnMouseDown()
     {
         transform.SetParent(null);
     }
+
+    // Follow mouse
     private void OnMouseDrag()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -29,6 +32,8 @@ public class CardBehavior : MonoBehaviour
         transform.position = mousePosition;
     }
 
+    // Summon monster if it's on a lane
+    // TODO: Extend this summoning system to spells + add "summon" zones
     private void OnMouseUp()
     {
         if (currLane != null)
@@ -50,9 +55,13 @@ public class CardBehavior : MonoBehaviour
     }
 
 
+
+    // This callback is triggered whenver the card collides with another 
+    // collider2D.
+    // TODO: Maybe reduce card hitboc while being dragged?
     private void OnCollisionEnter2D(Collision2D other)
     {
-        // print("Collide!");
+        // If card hitbox is over lane, save the lane's information
         if (other.transform.tag == LANE_TAG)
         {
             currLane = other.transform.GetComponent<LaneBehavior>();
@@ -60,9 +69,11 @@ public class CardBehavior : MonoBehaviour
         }
     }
 
+    // This callback is triggered whenver the card stops colliding with another 
+    // collider2D.
     private void OnCollisionExit2D(Collision2D other)
     {
-        // Remove curr lane if we just left it.
+        // Remove saved lane information if we just left it.
         if (currLane == other.transform.GetComponent<LaneBehavior>())
         {
             currLane = null;

@@ -5,7 +5,7 @@
 
 using UnityEngine;
 
-public class HandManager : MonoBehaviour
+public class PlayerHand : MonoBehaviour
 {
     public int handSize;
     public PlayerDeck gameDeck;

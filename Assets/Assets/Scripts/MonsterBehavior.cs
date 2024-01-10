@@ -11,8 +11,8 @@ public class MonsterBehavior : MonoBehaviour
     private int basePower;
     private int baseHealth;
     private Image image;
-    public string monsterName;
 
+    public string monsterName;
     public int power;
     public int health;
     public int powerBuffs;

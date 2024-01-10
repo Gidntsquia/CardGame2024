@@ -1,6 +1,7 @@
 // Code created by Jaxon Lee
 //
-// Display the data of a card.
+// Display the data of a single card.
+
 using TMPro;
 using UnityEngine;
 
