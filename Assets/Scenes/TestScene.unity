@@ -705,6 +705,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardDisplay (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7260654027362582265, guid: 3a545f63d6078404a8231fed44ce6010, type: 3}
+      propertyPath: monsterCardIdentity
+      value: 
+      objectReference: {fileID: 11400000, guid: 78cfac73c891c46cfa0e35fb5f2b1205, type: 2}
     - target: {fileID: 8035116446370345536, guid: 3a545f63d6078404a8231fed44ce6010, type: 3}
       propertyPath: cardIdentity
       value: 
@@ -1209,7 +1213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5199047849597071682, guid: fe279e3d5cc0643adb50e8b5becd9199, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.50872904
+      value: 1.31
       objectReference: {fileID: 0}
     - target: {fileID: 5199047849597071682, guid: fe279e3d5cc0643adb50e8b5becd9199, type: 3}
       propertyPath: m_LocalPosition.z

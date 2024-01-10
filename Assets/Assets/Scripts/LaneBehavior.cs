@@ -36,8 +36,15 @@ public class LaneBehavior : MonoBehaviour
     private Dictionary<(Player, Location), MonsterActive> monstersMap =
             new Dictionary<(Player, Location), MonsterActive>();
 
+    // Summon a monster at a particular location
     public void summonMonster(MonsterCard monsterCardData, Player player, Location location)
     {
+        // Destroy existing monster
+        if (monstersMap.TryGetValue((player, location), out MonsterActive existingMonster))
+        {
+            Destroy(existingMonster.gameObject);
+        }
+
         // Create a new monster
         GameObject monsterObject = Instantiate(monsterPrefab);
 
@@ -53,9 +60,16 @@ public class LaneBehavior : MonoBehaviour
         monstersMap[(player, location)] = monster;
     }
 
+
+    // Summon the monster in the front position.
+    public void summonMonster(MonsterCard monsterCardData, Player player)
+    {
+        summonMonster(monsterCardData, player, Location.Front);
+    }
+
     private void Start()
     {
-        createTestMonsters();
+        // createTestMonsters();
         // doLaneCombat();
     }
 
@@ -101,7 +115,7 @@ public class LaneBehavior : MonoBehaviour
 
     private void processAttack(Player player, Location location)
     {
-        if (monstersMap.TryGetValue((player, location), out var monster))
+        if (monstersMap.TryGetValue((player, location), out MonsterActive monster))
         {
             // Skip monsters that are null or dead
             if (monster == null || monster.isDead)

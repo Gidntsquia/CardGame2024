@@ -9,10 +9,12 @@ public class CardDragger : MonoBehaviour
     private Transform parent;
     private const string LANE_TAG = "Lane";
     private LaneBehavior currLane = null;
+    private MonsterCard monsterCardIdentity;
 
     private void Start()
     {
         parent = transform.parent;
+        monsterCardIdentity = GetComponent<CardDisplayer>().cardIdentity;
     }
 
     private void OnMouseDown()
@@ -30,7 +32,9 @@ public class CardDragger : MonoBehaviour
     {
         if (currLane != null)
         {
-
+            // Play the card
+            currLane.summonMonster(monsterCardIdentity, LaneBehavior.Player.Hero);
+            Destroy(gameObject);
         }
         else
         {
