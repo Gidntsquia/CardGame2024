@@ -9,12 +9,14 @@ public class CardDragger : MonoBehaviour
     private Transform parent;
     private const string LANE_TAG = "Lane";
     private LaneBehavior currLane = null;
-    private MonsterCard monsterCardIdentity;
+    private Card cardIdentity;
 
     private void Start()
     {
         parent = transform.parent;
-        monsterCardIdentity = GetComponent<CardDisplayer>().cardIdentity;
+        // TODO: Figure out what to do if it's a spell card.
+        // TODO: Make CardDragger and MonsterBehavior the authorities on their values
+        cardIdentity = GetComponent<CardDisplayer>().cardIdentity;
     }
 
     private void OnMouseDown()
@@ -32,9 +34,15 @@ public class CardDragger : MonoBehaviour
     {
         if (currLane != null)
         {
-            // Play the card
-            currLane.summonMonster(monsterCardIdentity, LaneBehavior.Player.Hero);
-            Destroy(gameObject);
+            print("Play?");
+            if (cardIdentity is MonsterCard)
+            {
+                print("Yes!");
+                // Play the card
+                currLane.summonMonster((MonsterCard)cardIdentity, LaneBehavior.Player.Hero);
+                Destroy(gameObject);
+            }
+
         }
         else
         {

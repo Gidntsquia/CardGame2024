@@ -6,28 +6,55 @@ using UnityEngine;
 
 public class CardDisplayer : MonoBehaviour
 {
-    public MonsterCard cardIdentity;
+    public Card cardIdentity;
     public TMP_Text healthField;
     public TMP_Text powerField;
     public TMP_Text costField;
     public TMP_Text nameField;
-    // public 
 
     // Start is called before the first frame update
     void Start()
     {
-        healthField.text = cardIdentity.health.ToString();
-        powerField.text = cardIdentity.power.ToString();
-        costField.text = cardIdentity.manaCost.ToString();
+        displayValues();
+    }
 
-        if (cardIdentity.image == null && nameField != null)
+    public void displayValues()
+    {
+        switch (cardIdentity)
         {
-            nameField.text = cardIdentity.name;
-        }
-        else
-        {
+            case MonsterCard monsterCard:
+                healthField.text = monsterCard.health.ToString();
+                powerField.text = monsterCard.power.ToString();
+                costField.text = monsterCard.manaCost.ToString();
 
-        }
+                // Display the image for the MonsterCard if available
+                if (monsterCard.image == null && nameField != null)
+                {
+                    nameField.text = monsterCard.name;
+                }
+                else
+                {
 
+                }
+                break;
+
+            case SpellCard spellCard:
+                costField.text = spellCard.manaCost.ToString();
+
+                // Display the image for the SpellCard if available
+                if (spellCard.image == null && nameField != null)
+                {
+                    nameField.text = spellCard.name;
+                }
+                else
+                {
+
+                }
+                break;
+
+            default:
+                Debug.LogError("Unknown card type");
+                break;
+        }
     }
 }
