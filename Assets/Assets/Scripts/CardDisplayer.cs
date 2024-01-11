@@ -20,7 +20,7 @@ public class CardDisplayer : MonoBehaviour
         // displayValues();
     }
 
-    public void displayValues()
+    public void DisplayValues()
     {
         switch (cardIdentity)
         {
@@ -60,7 +60,7 @@ public class CardDisplayer : MonoBehaviour
         }
     }
 
-    public void displayValues(Card card)
+    public void DisplayValues(Card card)
     {
         cardIdentity = card;
         switch (card)

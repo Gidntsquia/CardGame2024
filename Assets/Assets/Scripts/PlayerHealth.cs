@@ -13,7 +13,7 @@ public class PlayerHealth : ScriptableObject
     public static int maxHealth = 20;
     public int health = maxHealth;
 
-    public void takeDamage(int damageToTake)
+    public void TakeDamage(int damageToTake)
     {
         health -= damageToTake;
 

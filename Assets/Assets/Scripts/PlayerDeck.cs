@@ -23,14 +23,14 @@ public class PlayerDeck : MonoBehaviour
             }
         }
 
-        shuffle();
+        Shuffle();
     }
 
 
 
     // Get the top card off the deck.
     // The deck is like a stack, so I'm using stack terminology here.
-    public Card pop()
+    public Card Pop()
     {
         Card topCard = null;
         if (deck.Count > 0)
@@ -41,14 +41,14 @@ public class PlayerDeck : MonoBehaviour
         return topCard;
     }
 
-    public void addCardToDeck()
+    public void AddCardToDeck()
     {
 
     }
 
 
     // Shuffle the deck
-    public void shuffle()
+    public void Shuffle()
     {
         ShuffleList(deck);
     }

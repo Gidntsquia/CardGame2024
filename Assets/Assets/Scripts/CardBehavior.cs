@@ -58,7 +58,7 @@ public class CardBehavior : MonoBehaviour
 
     // This callback is triggered whenver the card collides with another 
     // collider2D.
-    // TODO: Maybe reduce card hitboc while being dragged?
+    // TODO: Maybe reduce card hitbox while being dragged?
     private void OnCollisionEnter2D(Collision2D other)
     {
         // If card hitbox is over lane, save the lane's information

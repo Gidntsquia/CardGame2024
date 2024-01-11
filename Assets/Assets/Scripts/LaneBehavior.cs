@@ -65,7 +65,7 @@ public class LaneBehavior : MonoBehaviour
 
     private void Start()
     {
-        createTestMonsters();
+        CreateTestMonsters();
     }
 
 
@@ -76,12 +76,12 @@ public class LaneBehavior : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             print("Combat!");
-            doLaneCombat();
+            DoLaneCombat();
         }
     }
 
     // Manually create a hero and enemy monster for testing purposes.
-    private void createTestMonsters()
+    private void CreateTestMonsters()
     {
         // Create hero monster
         // summonMonster(heroTest, Player.Hero, Location.Front);
@@ -94,23 +94,23 @@ public class LaneBehavior : MonoBehaviour
 
     // Do combat for this lane.
     // TODO: Turn this into an IEnumerator and make it a Coroutine f/ animations.
-    private void doLaneCombat()
+    private void DoLaneCombat()
     {
         // Note this order-- this is a key mechanic
-        processAttack(Player.Hero, Location.Front);
-        processAttack(Player.Hero, Location.Back);
-        processAttack(Player.Enemy, Location.Front);
-        processAttack(Player.Enemy, Location.Back);
+        ProcessAttack(Player.Hero, Location.Front);
+        ProcessAttack(Player.Hero, Location.Back);
+        ProcessAttack(Player.Enemy, Location.Front);
+        ProcessAttack(Player.Enemy, Location.Back);
 
 
-        processDeath(Player.Hero, Location.Front);
-        processDeath(Player.Hero, Location.Back);
-        processDeath(Player.Enemy, Location.Front);
-        processDeath(Player.Enemy, Location.Back);
+        ProcessDeath(Player.Hero, Location.Front);
+        ProcessDeath(Player.Hero, Location.Back);
+        ProcessDeath(Player.Enemy, Location.Front);
+        ProcessDeath(Player.Enemy, Location.Back);
     }
 
     // Apply attack for a monster a particular location.
-    private void processAttack(Player player, Location location)
+    private void ProcessAttack(Player player, Location location)
     {
         if (laneMap.TryGetValue((player, location), out MonsterBehavior monster))
         {
@@ -144,7 +144,7 @@ public class LaneBehavior : MonoBehaviour
 
     // Kill any monsters that have died.
     // TODO: Play a death animation here if monster dies. 
-    private void processDeath(Player player, Location location)
+    private void ProcessDeath(Player player, Location location)
     {
         if (laneMap.TryGetValue((player, location), out MonsterBehavior monster))
         {

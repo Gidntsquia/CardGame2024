@@ -19,11 +19,11 @@ public class MonsterDisplayer : MonoBehaviour
         monsterIdentity = GetComponent<MonsterBehavior>();
 
         // TODO: Change this to an event
-        displayValues();
+        DisplayValues();
     }
 
     // Display the monster's stats.
-    public void displayValues()
+    public void DisplayValues()
     {
         healthField.text = monsterIdentity.health.ToString();
         powerField.text = monsterIdentity.power.ToString();

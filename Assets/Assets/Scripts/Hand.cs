@@ -9,21 +9,34 @@ using UnityEngine;
 
 public abstract class Hand : ScriptableObject
 {
+    public class UniqueCard
+    {
+        public Card card;
+        public int id;
+        private List<int> randomList;
+
+        private int GetUniqueRandomID()
+        {
+            return 0;
+        }
+
+    }
     public List<Card> cards = new List<Card>();
-    public event Action handChanged;
+    public event Action<Card> cardAdded;
+    public event Action<Card> cardRemoved;
 
     // Add a card to the hand and notify subscribers
-    public void addCard(Card cardToAdd)
+    public void AddCard(Card cardToAdd)
     {
         cards.Add(cardToAdd);
-        handChanged.Invoke();
+        cardAdded.Invoke(cardToAdd);
     }
 
     // Removesa card from the hand and notify subscribers
-    public void removeCard(Card cardToRemove)
+    public void RemoveCard(Card cardToRemove)
     {
         cards.Remove(cardToRemove);
-        handChanged.Invoke();
+        cardRemoved.Invoke(cardToRemove);
     }
 
 }

@@ -74,7 +74,7 @@ public class MonsterBehavior : MonoBehaviour
         }
         else
         {
-            enemyHealthSystem.takeDamage(power);
+            enemyHealthSystem.TakeDamage(power);
         }
     }
 
