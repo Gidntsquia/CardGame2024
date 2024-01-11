@@ -1,44 +1,19 @@
-// Code by Jaxon Lee
-//
-// Manages one player's hand, which holds monster and spell cards that can be
-// played.
+// Code written by Jaxon Lee
+// 
+// Data for a player's hand, which holds cards that the player can play. Resets
+// at the beginning of the game to ensure no carry over from old games.
 
 using UnityEngine;
 
-public class PlayerHand : MonoBehaviour
+// This creates an menu entry in the Unity editor when you right click in the 
+// "Project" tab. It's called "CardSystem/PlayerHand".
+[CreateAssetMenu(fileName = "newPlayerHand", menuName = "CardSystem/PlayerHand", order = 5)]
+public class PlayerHand : Hand
 {
-    public int handSize;
-    public PlayerDeck gameDeck;
-    public GameObject cardObject;
-
-    public void draw(int numCardsToDraw)
+    // Reset at the beginning of the game.
+    private void OnEnable()
     {
-        for (int i = 0; i < numCardsToDraw; i++)
-        {
-            // Get the top card of the deck
-            Card newCard = gameDeck.pop();
-
-            // Make a new card object and add it to the hand.
-            GameObject newCardObject = Instantiate(cardObject);
-            newCardObject.transform.SetParent(transform);
-
-            // Set the new card's identity 
-            CardBehavior newCardBehavior = newCardObject.GetComponent<CardBehavior>();
-            newCardBehavior.cardIdentity = newCard;
-
-            // Display the card's values
-            CardDisplayer newCardDisplayer = newCardObject.GetComponent<CardDisplayer>();
-            newCardDisplayer.displayValues(newCard);
-
-            // Update hand size
-            // TODO: Need to reduce this when cards are played.
-            handSize += 1;
-        }
-    }
-
-    private void Start()
-    {
-        draw(5);
+        cards.Clear();
     }
 
 }
