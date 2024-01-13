@@ -11,8 +11,6 @@ public class HandBehavior : MonoBehaviour
     public Hand hand;
     public GameObject cardObject;
     public Dictionary<int, GameObject> visibleCards;
-    public int handSize;
-    public PlayerDeck gameDeck;
 
     private void Start()
     {

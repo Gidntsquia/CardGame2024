@@ -6,10 +6,11 @@ public class PlayerDeck : MonoBehaviour
 {
     public Deck baseDeck;
     public List<Card> deck;
+    public Hand hand;
 
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         deck = new List<Card>();
         foreach (Deck.CardAndCount cardAndCount in baseDeck.cards)
@@ -43,6 +44,14 @@ public class PlayerDeck : MonoBehaviour
     public void AddCardToDeck()
     {
 
+    }
+
+    public void Draw(int numCardsToDraw)
+    {
+        for (int i = 0; i < numCardsToDraw; i++)
+        {
+            hand.AddCard(Pop());
+        }
     }
 
 
