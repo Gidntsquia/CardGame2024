@@ -55,19 +55,4 @@ public abstract class Hand : ScriptableObject
         }
     }
 
-
-    // Runs on scene start
-    // private void OnEnable()
-    // {
-    //     Debug.Log("Adding initial cards");
-    //     // Notify subcribers of the intial state of the card list.
-    //     if (cards.Count > 0)
-    //     {
-    //         foreach (UniqueCard uniqueCard in cards)
-    //         {
-    //             cardAdded?.Invoke(uniqueCard.card, uniqueCard.id);
-    //         }
-    //     }
-    // }
-
 }

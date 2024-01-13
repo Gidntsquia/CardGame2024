@@ -23,9 +23,8 @@ public class PlayerDeck : MonoBehaviour
             }
         }
 
-        Shuffle();
+        ShuffleDeck();
     }
-
 
 
     // Get the top card off the deck.
@@ -48,7 +47,7 @@ public class PlayerDeck : MonoBehaviour
 
 
     // Shuffle the deck
-    public void Shuffle()
+    public void ShuffleDeck()
     {
         ShuffleList(deck);
     }

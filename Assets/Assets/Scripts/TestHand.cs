@@ -35,6 +35,7 @@ public class TestHand : Hand
     }
 
     // Restore original test hand
+    // This runs on scene start (for some reason--nothing we better we can do).
     private void OnDisable()
     {
         Debug.Log($"Restoring test hand: {name}");

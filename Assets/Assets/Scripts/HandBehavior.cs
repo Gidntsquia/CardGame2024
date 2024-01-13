@@ -18,7 +18,6 @@ public class HandBehavior : MonoBehaviour
     {
         visibleCards = new Dictionary<int, GameObject>();
 
-
         // Add initial cards
         foreach (Hand.UniqueCard uniqueCard in hand.cards)
         {
@@ -66,31 +65,5 @@ public class HandBehavior : MonoBehaviour
             visibleCards.Remove(idToRemove);
         }
     }
-
-    // public void draw(int numCardsToDraw)
-    // {
-    //     for (int i = 0; i < numCardsToDraw; i++)
-    //     {
-    //         // Get the top card of the deck
-    //         Card newCard = gameDeck.pop();
-
-    //         // Make a new card object and add it to the hand.
-    //         GameObject newCardObject = Instantiate(cardObject);
-    //         newCardObject.transform.SetParent(transform);
-
-    //         // Set the new card's identity 
-    //         CardBehavior newCardBehavior = newCardObject.GetComponent<CardBehavior>();
-    //         newCardBehavior.cardIdentity = newCard;
-
-    //         // Display the card's values
-    //         CardDisplayer newCardDisplayer = newCardObject.GetComponent<CardDisplayer>();
-    //         newCardDisplayer.displayValues(newCard);
-
-    //         // Update hand size
-    //         // TODO: Need to reduce this when cards are played.
-    //         handSize += 1;
-    //     }
-    // }
-
 
 }
