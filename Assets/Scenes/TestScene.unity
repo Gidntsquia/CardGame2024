@@ -481,9 +481,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 11400000, guid: ed64559cee5884e5c82c34b16e07743f, type: 2}
+  cardObject: {fileID: 4774499978112518993, guid: 3a545f63d6078404a8231fed44ce6010, type: 3}
+  visibleCards: []
   handSize: 0
   gameDeck: {fileID: 2000345982}
-  cardObject: {fileID: 4774499978112518993, guid: 3a545f63d6078404a8231fed44ce6010, type: 3}
 --- !u!1001 &1055430299
 PrefabInstance:
   m_ObjectHideFlags: 0

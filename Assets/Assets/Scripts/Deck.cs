@@ -16,7 +16,6 @@ public class Deck : ScriptableObject
     // Unique deck identifier
     public int deckCode;
 
-
     [Serializable]
     public class CardAndCount
     {

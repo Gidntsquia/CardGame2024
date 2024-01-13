@@ -4,42 +4,46 @@
 // played.
 
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class HandBehavior : MonoBehaviour
 {
     public Hand hand;
     public GameObject cardObject;
-    public List<GameObject> visibleCards;
-    // private List<Card> localCardsTracker;
+    public Dictionary<int, GameObject> visibleCards;
     public int handSize;
     public PlayerDeck gameDeck;
 
     private void Start()
     {
-        visibleCards = new List<GameObject>();
+        visibleCards = new Dictionary<int, GameObject>();
+
+
+        // Add initial cards
+        foreach (Hand.UniqueCard uniqueCard in hand.cards)
+        {
+            CreateVisibleCard(uniqueCard.card, uniqueCard.id);
+        }
+
+        // Subscribe to hand changes
+        hand.cardAdded += CreateVisibleCard;
+        hand.cardRemoved += RemoveVisibleCard;
     }
 
-    // public void updateHand()
-    // {
-    //     if (localCardsTracker.Count < hand.cards.Count)
-    //     {
-    //         // Only create the cards we just added.
-    //         Card[] newAdditions = hand.cards.Except(localCardsTracker).ToArray();
-    //         foreach (Card newCard in newAdditions)
-    //         {
-    //             createVisibleCard(newCard);
-    //         }
-    //     }
-    // }
+    // Remove self from subscription on destruciton
+    // This shouldn't come up, but if it does this will avoid an error.
+    private void OnDestroy()
+    {
+        hand.cardAdded -= CreateVisibleCard;
+        hand.cardRemoved -= RemoveVisibleCard;
+    }
 
-    private void CreateVisibleCard(Card card)
+    // Create a new visible card and add it to the hand.
+    private void CreateVisibleCard(Card card, int id)
     {
         // Make a new card object and add it to the hand.
         GameObject newCardObject = Instantiate(cardObject);
         newCardObject.transform.SetParent(transform);
-        visibleCards.Add(newCardObject);
 
         // Set the new card's identity 
         CardBehavior newCardBehavior = newCardObject.GetComponent<CardBehavior>();
@@ -48,13 +52,18 @@ public class HandBehavior : MonoBehaviour
         // Display the card's values
         CardDisplayer newCardDisplayer = newCardObject.GetComponent<CardDisplayer>();
         newCardDisplayer.DisplayValues(card);
+
+        // Add card to map
+        visibleCards.Add(id, newCardObject);
     }
 
-    private void RemoveVisibleCard(Card card)
+    // Remove a visible vard based on its ID.
+    private void RemoveVisibleCard(int idToRemove)
     {
-        foreach (GameObject visibleCard in visibleCards)
+        if (visibleCards.TryGetValue(idToRemove, out GameObject visibleCard))
         {
-            // if (visibleCard)
+            Destroy(visibleCard);
+            visibleCards.Remove(idToRemove);
         }
     }
 

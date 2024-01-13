@@ -12,21 +12,33 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "newTestHand", menuName = "CardSystem/TestHand", order = 5)]
 public class TestHand : Hand
 {
-    private List<Card> originalHand;
+    private List<UniqueCard> originalHand;
 
     // Save original test hand whenever any editor change is made (or the scene
     // is loaded)
     private void OnValidate()
     {
-        // Debug.Log($"Saving test hand: {name}");
-        originalHand = new List<Card>(cards);
+        // Regenerate cards list to each have a unique ID.
+        List<UniqueCard> cardsWithIDs = new List<UniqueCard>();
+
+        // Debug.Log("Here are the cards in the deck: ");
+        foreach (UniqueCard uniqueCard in cards)
+        {
+            UniqueCard cardWithID = new UniqueCard(uniqueCard.card);
+            cardsWithIDs.Add(cardWithID);
+            // Debug.Log($"ID: {cardWithID.id}, Card: {cardWithID.card}");
+
+        }
+
+        cards = new List<UniqueCard>(cardsWithIDs);
+        originalHand = new List<UniqueCard>(cardsWithIDs);
     }
 
     // Restore original test hand
     private void OnDisable()
     {
         Debug.Log($"Restoring test hand: {name}");
-        cards = new List<Card>(originalHand);
+        cards = new List<UniqueCard>(originalHand);
     }
 
 }
