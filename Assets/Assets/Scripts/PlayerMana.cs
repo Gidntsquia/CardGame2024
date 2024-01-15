@@ -13,6 +13,15 @@ public class PlayerMana : ScriptableObject
     public int maxTurnMana = 5;
     public int currMana;
 
+    private void OnEnable()
+    {
+        // TODO: uncomment this when ready to play for real.
+        // maxTurnMana = 1;
+
+        // Reset mana on start.
+        currMana = maxTurnMana;
+    }
+
     public bool HasEnoughMana(int manaAmount)
     {
         return manaAmount <= currMana;

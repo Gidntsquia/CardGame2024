@@ -8,57 +8,76 @@ public class CardBehavior : MonoBehaviour
 {
     public Card cardIdentity;
     public PlayerMana manaTracker;
-    private Transform parent;
+    private Transform originalParent;
     private const string LANE_TAG = "Lane";
     private LaneBehavior currLane = null;
 
     private void Start()
     {
-        parent = transform.parent;
+        originalParent = transform.parent;
         // TODO: Figure out what to do if it's a spell card.
         // TODO: Make CardDragger and MonsterBehavior the authorities on their values
     }
 
-    // Allow card to freely move (by removing it from its parent's layout group)
+
     private void OnMouseDown()
     {
+        // Allow card to freely move (by removing it from its parent's layout group)
         transform.SetParent(null);
     }
 
-    // Follow mouse
+
     private void OnMouseDrag()
     {
+        // Follow mouse
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0;
         transform.position = mousePosition;
     }
 
-    // Summon monster if it's on a lane
-    // TODO: Extend this summoning system to spells + add "summon" zones
+
     private void OnMouseUp()
     {
-        if (currLane != null)
+        // Summon monster or spell if they're in a lane.
+        switch (cardIdentity)
         {
-            print("Play?");
-            if (cardIdentity is MonsterCard && manaTracker.HasEnoughMana(cardIdentity.manaCost))
-            {
-                print("Yes!");
-                // Play the card
-                currLane.SummonMonster((MonsterCard)cardIdentity, LaneBehavior.Player.Hero);
-                Destroy(gameObject);
+            case MonsterCard monsterCard:
+                if (currLane != null && manaTracker.HasEnoughMana(monsterCard.manaCost))
+                {
+                    print($"Play monster to {currLane.name}");
 
-                // Use up mana
-                manaTracker.ReduceMana(cardIdentity.manaCost);
-            }
-            else
-            {
-                transform.SetParent(parent);
-            }
+                    // Play the card
+                    currLane.SummonMonster(monsterCard, LaneBehavior.Player.Hero);
+                    Destroy(gameObject);
 
-        }
-        else
-        {
-            transform.SetParent(parent);
+                    // Use up mana
+                    manaTracker.ReduceMana(monsterCard.manaCost);
+
+                }
+                else
+                {
+                    transform.SetParent(originalParent);
+                }
+                break;
+
+            case SpellCard spellCard:
+                if (currLane != null && manaTracker.HasEnoughMana(spellCard.manaCost))
+                {
+                    print($"Play spell to {currLane.name}");
+                    // TODO: Add some sort of animation
+
+                    // Play the card
+                    Destroy(gameObject);
+
+                    // Use up mana
+                    manaTracker.ReduceMana(spellCard.manaCost);
+                }
+                else
+                {
+                    transform.SetParent(originalParent);
+                }
+
+                break;
         }
     }
 

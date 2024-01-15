@@ -22,6 +22,7 @@ public class CardDisplayer : MonoBehaviour
 
     public void DisplayValues()
     {
+        // Code adapted from ChatGPT
         switch (cardIdentity)
         {
             case MonsterCard monsterCard:
