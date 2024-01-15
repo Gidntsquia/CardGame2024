@@ -8,8 +8,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // This creates an menu entry in the Unity editor when you right click in the 
-// "Project" tab. It's called "CardSystem/TestHand".
-[CreateAssetMenu(fileName = "newTestHand", menuName = "CardSystem/TestHand", order = 5)]
+// "Project" tab. It's called "Debug/TestHand".
+[CreateAssetMenu(fileName = "newTestHand", menuName = "Debug/TestHand", order = 1)]
 public class TestHand : Hand
 {
     private List<UniqueCard> originalHand;
@@ -18,20 +18,28 @@ public class TestHand : Hand
     // is loaded)
     private void OnValidate()
     {
-        // Regenerate cards list to each have a unique ID.
-        List<UniqueCard> cardsWithIDs = new List<UniqueCard>();
-
-        // Debug.Log("Here are the cards in the deck: ");
-        foreach (UniqueCard uniqueCard in cards)
+        // Only run editor commands if this is the editor -- this allows builds
+        // to work.
+#if UNITY_EDITOR
+        // Don't save hand during runtime.
+        if (!UnityEditor.EditorApplication.isPlaying)
         {
-            UniqueCard cardWithID = new UniqueCard(uniqueCard.card);
-            cardsWithIDs.Add(cardWithID);
-            // Debug.Log($"ID: {cardWithID.id}, Card: {cardWithID.card}");
+            // Regenerate cards list to each have a unique ID.
+            List<UniqueCard> cardsWithIDs = new List<UniqueCard>();
 
+            // Debug.Log("Here are the cards in the deck: ");
+            foreach (UniqueCard uniqueCard in cards)
+            {
+                UniqueCard cardWithID = new UniqueCard(uniqueCard.card);
+                cardsWithIDs.Add(cardWithID);
+                // Debug.Log($"ID: {cardWithID.id}, Card: {cardWithID.card}");
+
+            }
+
+            cards = new List<UniqueCard>(cardsWithIDs);
+            originalHand = new List<UniqueCard>(cardsWithIDs);
         }
-
-        cards = new List<UniqueCard>(cardsWithIDs);
-        originalHand = new List<UniqueCard>(cardsWithIDs);
+#endif
     }
 
     // Restore original test hand

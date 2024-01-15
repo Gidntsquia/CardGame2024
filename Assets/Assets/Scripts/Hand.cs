@@ -10,7 +10,7 @@ using UnityEngine;
 
 public abstract class Hand : ScriptableObject
 {
-    public PlayerDeck deck;
+    public InGameDeck deck;
 
     [Serializable]
     public class UniqueCard
