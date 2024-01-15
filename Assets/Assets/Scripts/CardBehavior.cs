@@ -61,6 +61,8 @@ public class CardBehavior : MonoBehaviour
                 break;
 
             case SpellCard spellCard:
+                // Only play spell if it's over a lane. This is the PvZ: Heroes 
+                // approach
                 if (currLane != null && manaTracker.HasEnoughMana(spellCard.manaCost))
                 {
                     print($"Play spell to {currLane.name}");
