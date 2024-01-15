@@ -44,7 +44,7 @@ public class CardBehavior : MonoBehaviour
             {
                 print("Yes!");
                 // Play the card
-                currLane.summonMonster((MonsterCard)cardIdentity, LaneBehavior.Player.Hero);
+                currLane.SummonMonster((MonsterCard)cardIdentity, LaneBehavior.Player.Hero);
                 Destroy(gameObject);
 
                 // Use up mana

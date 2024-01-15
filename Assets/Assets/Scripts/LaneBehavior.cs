@@ -33,7 +33,7 @@ public class LaneBehavior : MonoBehaviour
 
 
     // Summon a monster at a particular location
-    public void summonMonster(MonsterCard monsterCardData, Player player, Location location)
+    public void SummonMonster(MonsterCard monsterCardData, Player player, Location location)
     {
         // Destroy existing monster
         if (laneMap.TryGetValue((player, location), out MonsterBehavior existingMonster))
@@ -58,9 +58,9 @@ public class LaneBehavior : MonoBehaviour
 
 
     // Summon the monster in the front position.
-    public void summonMonster(MonsterCard monsterCardData, Player player)
+    public void SummonMonster(MonsterCard monsterCardData, Player player)
     {
-        summonMonster(monsterCardData, player, Location.Front);
+        SummonMonster(monsterCardData, player, Location.Front);
     }
 
     private void Start()
@@ -87,7 +87,7 @@ public class LaneBehavior : MonoBehaviour
         // summonMonster(heroTest, Player.Hero, Location.Front);
 
         // Create enemy monster
-        summonMonster(enemyTest, Player.Enemy, Location.Front);
+        SummonMonster(enemyTest, Player.Enemy, Location.Front);
     }
 
 
