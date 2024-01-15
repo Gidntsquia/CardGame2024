@@ -1,6 +1,7 @@
 // Code by Jaxon Lee
 //
 // Data for an in-game deck. It can be shuffled and drawn from.
+// This class can not be instantiated--instead, use PlayerDeck or TestDeck
 
 using System.Collections.Generic;
 using NaughtyAttributes;

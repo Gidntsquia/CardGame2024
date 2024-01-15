@@ -1,7 +1,7 @@
 // Code written by Jaxon Lee
 // 
 // Data for a player's hand, which holds cards that the player can play. This 
-// particular class can't be instantiated-- instead, do TestHand or PlayerHand.
+// particular class can't be instantiated--instead, do TestHand or PlayerHand.
 
 using System;
 using System.Collections.Generic;
