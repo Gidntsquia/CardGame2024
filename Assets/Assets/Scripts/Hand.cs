@@ -9,6 +9,8 @@ using UnityEngine;
 
 public abstract class Hand : ScriptableObject
 {
+    public PlayerDeck deck;
+
     [Serializable]
     public class UniqueCard
     {
@@ -28,7 +30,6 @@ public abstract class Hand : ScriptableObject
             this.id = GenerateUniqueID();
         }
     }
-
     public List<UniqueCard> cards = new List<UniqueCard>();
     public event Action<Card, int> cardAdded;
     public event Action<int> cardRemoved;
@@ -42,6 +43,7 @@ public abstract class Hand : ScriptableObject
         cardAdded?.Invoke(newCard.card, newCard.id);
     }
 
+
     // Removes a card from the hand and notify subscribers
     // Pass the id of the card that was removed.
     public void RemoveCard(int idOfCardToRemove)
@@ -52,6 +54,27 @@ public abstract class Hand : ScriptableObject
         {
             cards.Remove(cardToRemove);
             cardRemoved?.Invoke(idOfCardToRemove);
+        }
+    }
+
+
+    // Add cards to the hand from the deck.
+    public void DrawCards(int numCardsToDraw)
+    {
+        // Ensure we don't overdraw
+        // TODO: maybe add deck out lose condition?
+        int numCardsInDeck = deck.deck.Count;
+        if (numCardsToDraw > numCardsInDeck)
+        {
+            numCardsToDraw = numCardsInDeck;
+            Debug.Log("Deck doesn't have enough cards... hand will draw however many it can.");
+        }
+
+        // Draw cards to hand
+        for (int i = 0; i < numCardsToDraw; i++)
+        {
+            AddCard(deck.Pop());
+
         }
     }
 

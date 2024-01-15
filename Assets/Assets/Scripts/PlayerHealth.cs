@@ -6,7 +6,7 @@ using UnityEngine;
 
 // This creates an menu entry in the Unity editor when you right click in the 
 // "Project" tab. It's called "PlayerHealth".
-[CreateAssetMenu(fileName = "newPlayerHealth", menuName = "PlayerHealth", order = 1)]
+[CreateAssetMenu(fileName = "newPlayerHealth", menuName = "ValueTracker/PlayerHealth", order = 1)]
 public class PlayerHealth : ScriptableObject
 {
     // Change this value to change players' max health.

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 873981e4c5761495e9d6f8a4097d24c1, type: 3}
-  m_Name: FirstDeck
+  m_Name: First Base Deck
   m_EditorClassIdentifier: 
-  name: First Deck
+  name: First Base Deck
   deckCode: 1234
   cards:
   - card: {fileID: 11400000, guid: 78cfac73c891c46cfa0e35fb5f2b1205, type: 2}

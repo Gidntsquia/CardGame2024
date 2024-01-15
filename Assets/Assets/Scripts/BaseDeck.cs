@@ -1,14 +1,15 @@
 // Code written by Jaxon Lee
 // 
 // Data for a deck, which holds up to 40 cards and the player customizes.
+// This is a deck that you build in the deck builder.
 
 using System;
 using UnityEngine;
 
 // This creates an menu entry in the Unity editor when you right click in the 
-// "Project" tab. It's called "CardSystem/Deck".
-[CreateAssetMenu(fileName = "newDeck", menuName = "CardSystem/Deck", order = 2)]
-public class Deck : ScriptableObject
+// "Project" tab. It's called "CardSystem/BaseDeck".
+[CreateAssetMenu(fileName = "newBaseDeck", menuName = "CardSystem/BaseDeck", order = 2)]
+public class BaseDeck : ScriptableObject
 {
     // Number of duplicates of a card that a deck can have
     public const int MAX_COUNT_OF_ONE_CARD = 4;

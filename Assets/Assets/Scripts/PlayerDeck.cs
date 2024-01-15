@@ -1,19 +1,40 @@
+// Code by Jaxon Lee
+//
+// Data for an in-game deck. It can be shuffled and drawn from.
+
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class PlayerDeck : MonoBehaviour
+[CreateAssetMenu(fileName = "newPlayerDeck", menuName = "CardSystem/PlayerDeck", order = 6)]
+public class PlayerDeck : ScriptableObject
 {
-    public Deck baseDeck;
+    public BaseDeck baseDeck;
     public List<Card> deck;
-    public Hand hand;
+    // public Hand hand;
 
 
     // Start is called before the first frame update
-    private void Start()
+    // private void Start()
+    // {
+    //     deck = new List<Card>();
+    //     foreach (Deck.CardAndCount cardAndCount in baseDeck.cards)
+    //     {
+    //         // Add all the cards to the deck
+    //         Card card = cardAndCount.card;
+    //         int cardCount = cardAndCount.count;
+    //         for (int i = 0; i < cardCount; i++)
+    //         {
+    //             deck.Add(card);
+    //         }
+    //     }
+
+    //     ShuffleDeck();
+    // }
+
+    private void OnEnable()
     {
         deck = new List<Card>();
-        foreach (Deck.CardAndCount cardAndCount in baseDeck.cards)
+        foreach (BaseDeck.CardAndCount cardAndCount in baseDeck.cards)
         {
             // Add all the cards to the deck
             Card card = cardAndCount.card;
@@ -24,6 +45,7 @@ public class PlayerDeck : MonoBehaviour
             }
         }
 
+        // Randomize the order
         ShuffleDeck();
     }
 
@@ -44,14 +66,6 @@ public class PlayerDeck : MonoBehaviour
     public void AddCardToDeck()
     {
 
-    }
-
-    public void Draw(int numCardsToDraw)
-    {
-        for (int i = 0; i < numCardsToDraw; i++)
-        {
-            hand.AddCard(Pop());
-        }
     }
 
 

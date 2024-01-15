@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7edb5b354db634c608af474eec0c827c, type: 3}
+  m_Name: Hero Deck
+  m_EditorClassIdentifier: 
+  baseDeck: {fileID: 11400000, guid: 2218830dfd3f642afb3e461d6c172c1d, type: 2}
+  deck:
+  - {fileID: 11400000, guid: 78cfac73c891c46cfa0e35fb5f2b1205, type: 2}
+  - {fileID: 11400000, guid: 78cfac73c891c46cfa0e35fb5f2b1205, type: 2}
+  - {fileID: 11400000, guid: 8020ca6222943404e8748204ff16518a, type: 2}
+  - {fileID: 11400000, guid: 78cfac73c891c46cfa0e35fb5f2b1205, type: 2}
+  - {fileID: 11400000, guid: 8020ca6222943404e8748204ff16518a, type: 2}
+  - {fileID: 11400000, guid: 8020ca6222943404e8748204ff16518a, type: 2}
+  - {fileID: 11400000, guid: 78cfac73c891c46cfa0e35fb5f2b1205, type: 2}

@@ -6,7 +6,7 @@ using UnityEngine;
 
 // This creates an menu entry in the Unity editor when you right click in the 
 // "Project" tab. It's called "CardSystem/SpellCard".
-[CreateAssetMenu(fileName = "newSpellCard", menuName = "CardSystem/SpellCard", order = 1)]
+[CreateAssetMenu(fileName = "newSpellCard", menuName = "CardSystem/SpellCard", order = 2)]
 public class SpellCard : Card
 {
     // Use this to print out the values of this card.

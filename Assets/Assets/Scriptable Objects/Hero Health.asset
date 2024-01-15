@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48fe24469eeef4028908fee38af15406, type: 3}
-  m_Name: EnemyHealth
+  m_Name: Hero Health
   m_EditorClassIdentifier: 
-  health: 20
+  health: 1284710487
