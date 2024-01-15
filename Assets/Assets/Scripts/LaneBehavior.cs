@@ -65,7 +65,7 @@ public class LaneBehavior : MonoBehaviour
 
     private void Start()
     {
-        CreateTestMonsters();
+        // CreateTestMonsters();
     }
 
 
