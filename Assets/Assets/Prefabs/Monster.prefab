@@ -86,7 +86,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &7256480949288344942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,7 +138,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.23, y: -0.66}
+  m_AnchoredPosition: {x: 2.23, y: -0.48}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &146679521135747950
@@ -328,7 +328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d28c4a4e158b14d729431631e372b83e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterIdentity: {fileID: 6773042067217837165}
   healthField: {fileID: 4941175794640711560}
   powerField: {fileID: 731545278910991535}
   nameField: {fileID: 7746126323158972588}
@@ -366,7 +365,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.86, y: -0.68}
+  m_AnchoredPosition: {x: 0.86, y: -0.48}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3985937919708300247

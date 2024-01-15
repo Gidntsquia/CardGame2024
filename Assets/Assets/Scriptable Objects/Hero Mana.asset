@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Hero Mana
   m_EditorClassIdentifier: 
   maxTurnMana: 5
-  currMana: 5
+  currMana: 0
