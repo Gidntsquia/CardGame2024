@@ -7,6 +7,7 @@ using UnityEngine;
 public class CardBehavior : MonoBehaviour
 {
     public Card cardIdentity;
+    public PlayerMana manaTracker;
     private Transform parent;
     private const string LANE_TAG = "Lane";
     private LaneBehavior currLane = null;
@@ -39,12 +40,19 @@ public class CardBehavior : MonoBehaviour
         if (currLane != null)
         {
             print("Play?");
-            if (cardIdentity is MonsterCard)
+            if (cardIdentity is MonsterCard && manaTracker.HasEnoughMana(cardIdentity.manaCost))
             {
                 print("Yes!");
                 // Play the card
                 currLane.summonMonster((MonsterCard)cardIdentity, LaneBehavior.Player.Hero);
                 Destroy(gameObject);
+
+                // Use up mana
+                manaTracker.ReduceMana(cardIdentity.manaCost);
+            }
+            else
+            {
+                transform.SetParent(parent);
             }
 
         }

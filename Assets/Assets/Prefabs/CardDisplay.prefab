@@ -535,7 +535,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4b0d81c37d24ed39f75c75611ccf06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardIdentity: {fileID: 11400000, guid: 78cfac73c891c46cfa0e35fb5f2b1205, type: 2}
   healthField: {fileID: 1030299690734763979}
   powerField: {fileID: 6768741413940807191}
   costField: {fileID: 6742257051020874279}
@@ -597,6 +596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d7a05e0deea44b6bb99322321ef753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardIdentity: {fileID: 0}
+  manaTracker: {fileID: 11400000, guid: 988d2ac8ed69f44e38612e0b20d16ea3, type: 2}
 --- !u!50 &623955298356589262
 Rigidbody2D:
   serializedVersion: 4

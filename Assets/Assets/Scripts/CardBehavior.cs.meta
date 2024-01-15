@@ -3,7 +3,9 @@ guid: 03d7a05e0deea44b6bb99322321ef753
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - cardIdentity: {instanceID: 0}
+  - manaTracker: {fileID: 11400000, guid: 988d2ac8ed69f44e38612e0b20d16ea3, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
