@@ -19,7 +19,7 @@ public class TestHand : Hand
     private void OnValidate()
     {
         // Only run editor commands if this is the editor -- this allows builds
-        // to work.
+        // to compile.
 #if UNITY_EDITOR
         // Don't save hand during runtime.
         if (!UnityEditor.EditorApplication.isPlaying)
@@ -27,12 +27,10 @@ public class TestHand : Hand
             // Regenerate cards list to each have a unique ID.
             List<UniqueCard> cardsWithIDs = new List<UniqueCard>();
 
-            // Debug.Log("Here are the cards in the deck: ");
             foreach (UniqueCard uniqueCard in cards)
             {
                 UniqueCard cardWithID = new UniqueCard(uniqueCard.card);
                 cardsWithIDs.Add(cardWithID);
-                // Debug.Log($"ID: {cardWithID.id}, Card: {cardWithID.card}");
 
             }
 
@@ -46,7 +44,7 @@ public class TestHand : Hand
     // This runs on scene start (for some reason--nothing we better we can do).
     private void OnDisable()
     {
-        Debug.Log($"Restoring test hand: {name}");
+        // Debug.Log($"Restoring test hand: {name}");
         cards = new List<UniqueCard>(originalHand);
     }
 

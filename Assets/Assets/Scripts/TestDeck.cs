@@ -18,7 +18,7 @@ public class TestDeck : InGameDeck
     private void OnValidate()
     {
         // Only run editor commands if this is the editor -- this allows builds
-        // to work.
+        // to compile.
 #if UNITY_EDITOR
         // Don't save deck during runtime.
         if (!UnityEditor.EditorApplication.isPlaying)
@@ -33,7 +33,7 @@ public class TestDeck : InGameDeck
     // This runs on scene start (for some reason--nothing we better we can do).
     private void OnDisable()
     {
-        Debug.Log($"Restoring test deck: {name}");
+        // Debug.Log($"Restoring test deck: {name}");
         deck = new List<Card>(originalDeck);
     }
 }
