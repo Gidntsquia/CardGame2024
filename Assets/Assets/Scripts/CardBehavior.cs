@@ -50,6 +50,9 @@ public class CardBehavior : MonoBehaviour
                     currLane.SummonMonster(monsterCard, LaneBehavior.Player.Hero);
                     Destroy(gameObject);
 
+                    // Apply ability
+                    // monsterCard.cardAbility?.OnPlay();
+
                     // Use up mana
                     manaTracker.ReduceMana(monsterCard.manaCost);
 

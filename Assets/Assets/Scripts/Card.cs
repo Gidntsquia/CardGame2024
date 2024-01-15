@@ -11,8 +11,7 @@ using UnityEngine.UI;
 public abstract class Card : ScriptableObject
 {
     public int manaCost = 1;
-    // TODO: Add this
-    // public CardAbility cardAbility;
+    public CardAbility cardAbility;
     public enum Region
     {
         RazorShells,

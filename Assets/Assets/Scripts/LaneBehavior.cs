@@ -54,6 +54,10 @@ public class LaneBehavior : MonoBehaviour
 
         // Store the monster in the dictionary
         laneMap[(player, location)] = monster;
+
+        // Apply ability
+        monsterCardData.cardAbility?.OnPlay(monster);
+
     }
 
 
