@@ -133,8 +133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterPrefab: {fileID: 7024812255345978257, guid: 4eb8baca534424021ba84e00b725f1e8, type: 3}
-  heroMonsterSpot: {fileID: 0}
-  enemyMonsterSpot: {fileID: 0}
+  heroMonsterSpot: {fileID: 7820742344569098608}
+  enemyMonsterSpot: {fileID: 3628376345129549388}
   heroHealthSystem: {fileID: 11400000, guid: bf1d6eb18a1bb4af3b761be928ae9689, type: 2}
   enemyHealthSystem: {fileID: 11400000, guid: 0c30de2f353af430fb0e00c3253fbffe, type: 2}
   enemyTest: {fileID: 11400000, guid: 8020ca6222943404e8748204ff16518a, type: 2}

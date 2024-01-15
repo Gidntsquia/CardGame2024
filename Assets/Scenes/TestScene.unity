@@ -123,16 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!224 &52792125 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7820742344569098608, guid: fe279e3d5cc0643adb50e8b5becd9199, type: 3}
-  m_PrefabInstance: {fileID: 5430914806263622859}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &94838990 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3628376345129549388, guid: fe279e3d5cc0643adb50e8b5becd9199, type: 3}
-  m_PrefabInstance: {fileID: 5430914806263622859}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &273663229
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -734,18 +724,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 362655932658268094, guid: fe279e3d5cc0643adb50e8b5becd9199, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3080577238817770910, guid: fe279e3d5cc0643adb50e8b5becd9199, type: 3}
-      propertyPath: heroMonsterSpot
-      value: 
-      objectReference: {fileID: 52792125}
-    - target: {fileID: 3080577238817770910, guid: fe279e3d5cc0643adb50e8b5becd9199, type: 3}
-      propertyPath: enemyMonsterSpot
-      value: 
-      objectReference: {fileID: 94838990}
     - target: {fileID: 5199047849597071682, guid: fe279e3d5cc0643adb50e8b5becd9199, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.95
@@ -789,10 +767,6 @@ PrefabInstance:
     - target: {fileID: 8470521023305977796, guid: fe279e3d5cc0643adb50e8b5becd9199, type: 3}
       propertyPath: m_Name
       value: Lane 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8470521023305977796, guid: fe279e3d5cc0643adb50e8b5becd9199, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
