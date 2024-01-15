@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 public abstract class Hand : ScriptableObject
@@ -76,6 +77,14 @@ public abstract class Hand : ScriptableObject
             AddCard(deck.Pop());
 
         }
+    }
+
+
+    // Add inspector button for drawing a card.
+    [Button]
+    private void DrawOneCard()
+    {
+        DrawCards(1);
     }
 
 }

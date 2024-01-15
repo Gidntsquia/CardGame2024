@@ -4,6 +4,7 @@
 // played.
 
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class HandBehavior : MonoBehaviour
@@ -62,6 +63,12 @@ public class HandBehavior : MonoBehaviour
             Destroy(visibleCard);
             visibleCards.Remove(idToRemove);
         }
+    }
+
+    [Button]
+    private void DrawOneCard()
+    {
+        hand.DrawCards(1);
     }
 
 }
