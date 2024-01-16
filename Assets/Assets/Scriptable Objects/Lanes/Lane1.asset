@@ -14,3 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   left: {fileID: 0}
   right: {fileID: 0}
+  laneMap:
+    _serializedList:
+    - Key:
+        playerSide: 0
+        arrangement: 0
+      Value: {fileID: 0}

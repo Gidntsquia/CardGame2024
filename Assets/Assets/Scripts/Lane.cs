@@ -15,6 +15,7 @@ public class Lane : ScriptableObject
     public Lane left;
     public Lane right;
 
+    // The side the monster is on
     [Serializable]
     public enum Player
     {
@@ -22,20 +23,24 @@ public class Lane : ScriptableObject
         Enemy
     }
 
+    // Front or back
     [Serializable]
-    public enum Arrangement
+    public enum Position
     {
         Front,
         Back
     }
 
+    // Place that a monster can be played. There are 4 possible spots.
     [Serializable]
-    public class Location
+    public class PlaySpot
     {
         public Player playerSide;
-        public Arrangement arrangement;
+        public Position position;
     }
 
+    // Monsters that are in the lane
     [SerializedDictionary("Placement", "Monster")]
-    public SerializedDictionary<Location, MonsterBehavior> laneMap;
+    public SerializedDictionary<PlaySpot, MonsterBehavior> laneMap =
+        new SerializedDictionary<PlaySpot, MonsterBehavior>();
 }
