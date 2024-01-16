@@ -37,10 +37,39 @@ public class Lane : ScriptableObject
     {
         public Player playerSide;
         public Position position;
+
+        public PlaySpot(Player playerSide, Position position)
+        {
+            this.playerSide = playerSide;
+            this.position = position;
+        }
+
+        public PlaySpot[] GetOpponentPlaySpots()
+        {
+            // Set a default value-- this will be changed in a few lines
+            Player opponentSide = Player.Hero;
+
+            // Set opponentSide ot the opposite of whatever side this PlaySpot
+            // is on.
+            switch (playerSide)
+            {
+                case Player.Hero:
+                    opponentSide = Player.Enemy;
+                    break;
+                case Player.Enemy:
+                    opponentSide = Player.Hero;
+                    break;
+            }
+
+            PlaySpot opponentFront = new PlaySpot(opponentSide, Position.Front);
+            PlaySpot opponentBack = new PlaySpot(opponentSide, Position.Back);
+
+            return new PlaySpot[] { opponentFront, opponentBack };
+        }
     }
 
     // Monsters that are in the lane
     [SerializedDictionary("Placement", "Monster")]
-    public SerializedDictionary<PlaySpot, MonsterBehavior> laneMap =
+    public SerializedDictionary<PlaySpot, MonsterBehavior> laneMonsterMap =
         new SerializedDictionary<PlaySpot, MonsterBehavior>();
 }

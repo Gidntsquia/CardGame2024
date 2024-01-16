@@ -7,13 +7,14 @@ using UnityEngine;
 
 public class LaneBehavior : MonoBehaviour
 {
+    public Lane laneIdentity;
     public GameObject monsterPrefab;
     public Transform heroMonsterSpot;
     public Transform enemyMonsterSpot;
     public PlayerHealth heroHealthSystem;
     public PlayerHealth enemyHealthSystem;
     // public MonsterCard heroTest;
-    public MonsterCard enemyTest;
+    // public MonsterCard enemyTest;
 
     public enum Player
     {
@@ -85,14 +86,14 @@ public class LaneBehavior : MonoBehaviour
     }
 
     // Manually create a hero and enemy monster for testing purposes.
-    private void CreateTestMonsters()
-    {
-        // Create hero monster
-        // summonMonster(heroTest, Player.Hero, Location.Front);
+    // private void CreateTestMonsters()
+    // {
+    //     // Create hero monster
+    //     // summonMonster(heroTest, Player.Hero, Location.Front);
 
-        // Create enemy monster
-        SummonMonster(enemyTest, Player.Enemy, Location.Front);
-    }
+    //     // Create enemy monster
+    //     SummonMonster(enemyTest, Player.Enemy, Location.Front);
+    // }
 
 
 
