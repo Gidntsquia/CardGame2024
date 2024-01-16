@@ -2,14 +2,12 @@
 // 
 // Handles all the behavior of one lane, including lane combat.
 
-using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 using static Lane;
 
 public class LaneBehavior : MonoBehaviour
 {
-    // [Expandable]
     public Lane laneIdentity;
     public GameObject monsterPrefab;
     public Transform heroMonsterSpot;
