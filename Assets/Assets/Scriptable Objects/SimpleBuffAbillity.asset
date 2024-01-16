@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8091b75a283c494f862497a0fbb8643, type: 3}
   m_Name: SimpleBuffAbillity
   m_EditorClassIdentifier: 
-  powerBuff: 0
-  healthBuff: 0
+  powerBuff: 1
+  healthBuff: 1

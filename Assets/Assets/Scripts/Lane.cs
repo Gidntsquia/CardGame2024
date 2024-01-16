@@ -4,7 +4,7 @@
 // This is a deck that you build in the deck builder.
 
 using System;
-using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
 // This creates an menu entry in the Unity editor when you right click in the 
@@ -23,13 +23,19 @@ public class Lane : ScriptableObject
     }
 
     [Serializable]
-    public enum Location
+    public enum Arrangement
     {
         Front,
         Back
     }
 
-    
-    public Dictionary<(Player, Location), MonsterBehavior> laneMap =
-            new Dictionary<(Player, Location), MonsterBehavior>();
+    [Serializable]
+    public class Location
+    {
+        public Player playerSide;
+        public Arrangement arrangement;
+    }
+
+    [SerializedDictionary("Placement", "Monster")]
+    public SerializedDictionary<Location, MonsterBehavior> laneMap;
 }

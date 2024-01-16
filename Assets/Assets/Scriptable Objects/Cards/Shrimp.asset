@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Shrimp
   m_EditorClassIdentifier: 
   manaCost: 1
+  cardAbilities: []
   region: 0
   flavorText: Im a shrimp
   image: {fileID: 0}
