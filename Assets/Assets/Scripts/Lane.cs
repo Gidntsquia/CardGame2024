@@ -1,7 +1,7 @@
 // Code written by Jaxon Lee
 // 
-// Data for a deck, which holds up to 40 cards and the player customizes.
-// This is a deck that you build in the deck builder.
+// Data for one of the 5 lanes. It holds references to its neighbors and the
+// monsters that are in its lane.
 
 using System;
 using AYellowpaper.SerializedCollections;
@@ -9,11 +9,11 @@ using UnityEngine;
 
 // This creates an menu entry in the Unity editor when you right click in the 
 // "Project" tab. It's called "Lane".
-[CreateAssetMenu(fileName = "newLane", menuName = "Lane", order = 2)]
+[CreateAssetMenu(fileName = "newLane", menuName = "Lane", order = 5)]
 public class Lane : ScriptableObject
 {
-    public Lane left;
-    public Lane right;
+    public Lane leftNeighbor;
+    public Lane rightNeighbor;
 
     // The side the monster is on
     [Serializable]
