@@ -711,6 +711,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7102906667836022825, guid: 4eb8baca534424021ba84e00b725f1e8, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -724,6 +728,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3080577238817770910, guid: fe279e3d5cc0643adb50e8b5becd9199, type: 3}
+      propertyPath: heroTest
+      value: 
+      objectReference: {fileID: 11400000, guid: 78cfac73c891c46cfa0e35fb5f2b1205, type: 2}
+    - target: {fileID: 3080577238817770910, guid: fe279e3d5cc0643adb50e8b5becd9199, type: 3}
+      propertyPath: laneIdentity
+      value: 
+      objectReference: {fileID: 11400000, guid: 73c3de1fbda944cbbb06f037f7bfd215, type: 2}
     - target: {fileID: 5199047849597071682, guid: fe279e3d5cc0643adb50e8b5becd9199, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.95

@@ -13,9 +13,9 @@ public class BuffSelfAbility : CardAbility
     public int powerBuff;
     public int healthBuff;
 
-    public override void OnPlay(MonsterBehavior monsterBehavior)
+    public override void OnPlay(Monster monster)
     {
-        monsterBehavior.giveBuff(powerBuff, healthBuff);
+        monster.giveBuff(powerBuff, healthBuff);
     }
 
 

@@ -5,6 +5,7 @@
 
 using System;
 using AYellowpaper.SerializedCollections;
+using NaughtyAttributes;
 using UnityEngine;
 
 // This creates an menu entry in the Unity editor when you right click in the 
@@ -66,10 +67,47 @@ public class Lane : ScriptableObject
 
             return new PlaySpot[] { opponentFront, opponentBack };
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            PlaySpot other = (PlaySpot)obj;
+            return playerSide == other.playerSide && position == other.position;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 17;
+                hash = hash * 23 + playerSide.GetHashCode();
+                hash = hash * 23 + position.GetHashCode();
+                return hash;
+            }
+        }
+
     }
 
     // Monsters that are in the lane
     [SerializedDictionary("Placement", "Monster")]
     public SerializedDictionary<PlaySpot, MonsterBehavior> laneMonsterMap =
         new SerializedDictionary<PlaySpot, MonsterBehavior>();
+
+
+    [Button]
+    public void AddEntry()
+    {
+        PlaySpot newPlaySpot = new PlaySpot(Player.Hero, Position.Front);
+        laneMonsterMap.TryAdd(newPlaySpot, null);
+    }
+
+    // Reset lane on game start.
+    private void OnEnable()
+    {
+        laneMonsterMap.Clear();
+    }
 }

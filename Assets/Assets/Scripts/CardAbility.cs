@@ -10,7 +10,7 @@ using UnityEngine;
 public abstract class CardAbility : ScriptableObject
 {
 
-    public virtual void OnPlay(MonsterBehavior monsterBehavior)
+    public virtual void OnPlay(Monster monsterToAffect)
     {
         // Do nothing unless overridden
         // 

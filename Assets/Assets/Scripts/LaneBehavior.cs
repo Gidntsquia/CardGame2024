@@ -3,6 +3,7 @@
 // Handles all the behavior of one lane, including lane combat.
 
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class LaneBehavior : MonoBehaviour
@@ -13,8 +14,8 @@ public class LaneBehavior : MonoBehaviour
     public Transform enemyMonsterSpot;
     public PlayerHealth heroHealthSystem;
     public PlayerHealth enemyHealthSystem;
-    // public MonsterCard heroTest;
-    // public MonsterCard enemyTest;
+    public MonsterCard heroTest;
+    public MonsterCard enemyTest;
 
     public enum Player
     {
@@ -44,6 +45,7 @@ public class LaneBehavior : MonoBehaviour
 
         // Create a new monster
         GameObject monsterObject = Instantiate(monsterPrefab);
+        monsterObject.name = monsterCardData.name;
 
         // Set its parent based on the location
         Transform monsterSpot = player == Player.Hero ? heroMonsterSpot : enemyMonsterSpot;
@@ -68,37 +70,38 @@ public class LaneBehavior : MonoBehaviour
         SummonMonster(monsterCardData, player, Location.Front);
     }
 
-    private void Start()
-    {
-        // CreateTestMonsters();
-    }
-
-
-    private void Update()
-    {
-        // TODO: Remove this 
-        // Debugging command
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            print("Combat!");
-            DoLaneCombat();
-        }
-    }
 
     // Manually create a hero and enemy monster for testing purposes.
-    // private void CreateTestMonsters()
-    // {
-    //     // Create hero monster
-    //     // summonMonster(heroTest, Player.Hero, Location.Front);
+    [Button]
+    private void CreateTestMonsters()
+    {
+        // Create hero monster
+        // summonMonster(heroTest, Player.Hero, Location.Front);
 
-    //     // Create enemy monster
-    //     SummonMonster(enemyTest, Player.Enemy, Location.Front);
-    // }
+        // Create enemy monster
+        // SummonMonster(enemyTest, Player.Enemy, Location.Front);
+
+        // Create a new monster
+        GameObject monsterObject = Instantiate(monsterPrefab);
+
+        // Set its parent based on the location
+        // Transform monsterSpot = player == Player.Hero ? heroMonsterSpot : enemyMonsterSpot;
+        // monsterObject.transform.SetParent(monsterSpot);
+
+        // Get the MonsterBehavior component and initialize it
+        MonsterBehavior monster = monsterObject.GetComponent<MonsterBehavior>();
+        monster.Initialize(heroTest);
+
+        Lane.PlaySpot playerSpot = new Lane.PlaySpot(Lane.Player.Enemy, Lane.Position.Front);
+        laneIdentity.laneMonsterMap[playerSpot] = monster;
+        print(laneIdentity.laneMonsterMap[playerSpot].name);
+    }
 
 
 
     // Do combat for this lane.
     // TODO: Turn this into an IEnumerator and make it a Coroutine f/ animations.
+    [Button]
     private void DoLaneCombat()
     {
         // Note this order-- this is a key mechanic

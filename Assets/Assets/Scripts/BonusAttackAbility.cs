@@ -12,7 +12,7 @@ public class BonusAttackAbility : CardAbility
 {
     public int numBonusAttacks = 1;
 
-    public override void OnPlay(MonsterBehavior monsterBehavior)
+    public override void OnPlay(Monster monsterToDoBonusAttack)
     {
 
     }
