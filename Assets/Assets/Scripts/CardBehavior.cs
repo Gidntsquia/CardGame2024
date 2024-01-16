@@ -47,7 +47,7 @@ public class CardBehavior : MonoBehaviour
                     print($"Play monster to {currLane.name}");
 
                     // Play the card
-                    currLane.SummonMonster(monsterCard, LaneBehavior.Player.Hero);
+                    currLane.SummonMonster(monsterCard, Lane.Player.Hero);
                     Destroy(gameObject);
 
                     // Apply ability
@@ -97,7 +97,7 @@ public class CardBehavior : MonoBehaviour
         if (other.transform.tag == LANE_TAG)
         {
             currLane = other.transform.GetComponent<LaneBehavior>();
-            print($"I'm on {other.transform.name}");
+            // print($"I'm on {other.transform.name}");
         }
     }
 

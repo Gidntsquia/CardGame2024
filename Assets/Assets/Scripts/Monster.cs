@@ -3,6 +3,7 @@
 // Data for a monster, which has stats, can attack, and can die.
 
 using System;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,10 +26,11 @@ public class Monster : ScriptableObject
     public event Action PowerChanged;
     public event Action HealthChanged;
     public event Action OnDeath;
+    public event Action<Monster, Monster, PlayerHealth> AttackRequested;
 
 
     // Buff the monster
-    public void giveBuff(int powerBuff, int healthBuff)
+    public void GiveBuff(int powerBuff, int healthBuff)
     {
         powerBuffs += powerBuff;
         healthBuffs += healthBuff;
@@ -42,17 +44,28 @@ public class Monster : ScriptableObject
     }
 
     // Reduce monster's health
-    public void reduceHealth(int damageToTake)
+    public void ReduceHealth(int damageToTake)
     {
         health -= damageToTake;
         HealthChanged?.Invoke();
         if (health <= 0)
         {
-            // TODO: replace this with an event
-            OnDeath?.Invoke();
+            // OnDeath?.Invoke();
             isDead = true;
             Debug.Log($"{name} is dead");
         }
+    }
+
+    public void Attack(Monster frontTarget, Monster backTarget, PlayerHealth faceTarget)
+    {
+        AttackRequested?.Invoke(frontTarget, backTarget, faceTarget);
+    }
+
+    [Button]
+    public void Kill()
+    {
+        OnDeath.Invoke();
+        Debug.Log($"Kill {name}");
     }
 
     // Use this to print out the values of this monster.

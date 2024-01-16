@@ -5,21 +5,25 @@
 
 using UnityEngine;
 using TMPro;
+using NaughtyAttributes;
 
 public class MonsterDisplayer : MonoBehaviour
 {
+    [Expandable]
+    public Monster monsterIdentity;
     public TMP_Text healthField;
     public TMP_Text powerField;
     public TMP_Text nameField;
-    private Monster monsterIdentity;
 
-    // Start is called before the first frame update
-    void Start()
+    public void Initialize(Monster monsterIdentity)
     {
+        this.monsterIdentity = monsterIdentity;
+
         // TODO: add this
         // PlaySummonAnimation();
 
         DisplayValues();
+
         monsterIdentity.PowerChanged += UpdatePower;
         monsterIdentity.HealthChanged += UpdateHealth;
         monsterIdentity.OnDeath += PlayDeathAnimation;
@@ -56,14 +60,17 @@ public class MonsterDisplayer : MonoBehaviour
     // Play monster's death animaiton.
     public void PlayDeathAnimation()
     {
+        // Some sort of Coroutine
 
+        // Destroy self
+        Destroy(gameObject);
     }
 
 
     // Callback called when this component is destroyed.
     private void OnDestroy()
     {
-        // Clean up event subscriptions on des
+        // Clean up event subscriptions on destruction
         monsterIdentity.PowerChanged -= UpdatePower;
         monsterIdentity.HealthChanged -= UpdateHealth;
         monsterIdentity.OnDeath -= PlayDeathAnimation;

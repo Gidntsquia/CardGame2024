@@ -94,8 +94,8 @@ public class Lane : ScriptableObject
 
     // Monsters that are in the lane
     [SerializedDictionary("Placement", "Monster")]
-    public SerializedDictionary<PlaySpot, MonsterBehavior> laneMonsterMap =
-        new SerializedDictionary<PlaySpot, MonsterBehavior>();
+    public SerializedDictionary<PlaySpot, Monster> laneMonsterMap =
+        new SerializedDictionary<PlaySpot, Monster>();
 
 
     [Button]

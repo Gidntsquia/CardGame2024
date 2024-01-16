@@ -3,11 +3,12 @@
 // Hold data for a monster that was summoned to the field. Tracks it's stats,
 // including current health.
 
+using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MonsterBehavior : MonoBehaviour
 {
+    [Expandable]
     public Monster monsterIdentity;
 
     // Initialize values
@@ -49,19 +50,25 @@ public class MonsterBehavior : MonoBehaviour
     //         print($"{name} is dead");
     //     }
     // }
+    public void Initialize(Monster monsterIdentity)
+    {
+        this.monsterIdentity = monsterIdentity;
+
+        monsterIdentity.AttackRequested += Attack;
+    }
 
     // Deal damage to the frontmost enemy, otherwise deal damage to the 
     // opponent's face.
-    public void attack(Monster enemyFront, Monster enemyBack,
+    public void Attack(Monster enemyFront, Monster enemyBack,
                         PlayerHealth enemyHealthSystem)
     {
         if (enemyFront != null)
         {
-            enemyFront.reduceHealth(monsterIdentity.power);
+            enemyFront.ReduceHealth(monsterIdentity.power);
         }
         else if (enemyBack != null)
         {
-            enemyFront.reduceHealth(monsterIdentity.power);
+            enemyFront.ReduceHealth(monsterIdentity.power);
         }
         else
         {
@@ -75,5 +82,12 @@ public class MonsterBehavior : MonoBehaviour
     public override string ToString()
     {
         return monsterIdentity.ToString();
+    }
+
+    // Callback called when this component is destroyed.
+    private void OnDestroy()
+    {
+        // Clean up event subscriptions on destruction
+        monsterIdentity.AttackRequested -= Attack;
     }
 }
