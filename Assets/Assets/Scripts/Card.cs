@@ -2,6 +2,7 @@
 // 
 // Data for one card, which fills out a deck and can be played.
 
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +12,7 @@ using UnityEngine.UI;
 public abstract class Card : ScriptableObject
 {
     public int manaCost = 1;
-    public CardAbility cardAbility;
+    public List<CardAbility> cardAbilities;
     public enum Region
     {
         RazorShells,

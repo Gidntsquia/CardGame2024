@@ -56,7 +56,7 @@ public class LaneBehavior : MonoBehaviour
         laneMap[(player, location)] = monster;
 
         // Apply ability
-        monsterCardData.cardAbility?.OnPlay(monster);
+        monsterCardData.cardAbilities?.ForEach(ability => ability.OnPlay(monster));
 
     }
 
