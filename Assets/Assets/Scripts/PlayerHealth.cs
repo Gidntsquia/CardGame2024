@@ -2,6 +2,7 @@
 // 
 // Data for a player's health.
 
+using NaughtyAttributes;
 using UnityEngine;
 
 // This creates an menu entry in the Unity editor when you right click in the 
@@ -10,6 +11,7 @@ using UnityEngine;
 public class PlayerHealth : ScriptableObject
 {
     // Change this value to change players' max health.
+    [ShowNonSerializedField]
     public static int maxHealth = 20;
     public int health = maxHealth;
 
