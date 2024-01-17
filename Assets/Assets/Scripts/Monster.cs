@@ -71,7 +71,7 @@ public class Monster : ScriptableObject
     // Use this to print out the values of this monster.
     public override string ToString()
     {
-        return $"Monster Active Info:\n" +
+        return $"Monster Info:\n" +
                $"Base Power: {basePower}, " +
                $"Base Health: {baseHealth}, " +
                $"Image: {image}, " +

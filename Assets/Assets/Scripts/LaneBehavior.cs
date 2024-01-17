@@ -28,7 +28,7 @@ public class LaneBehavior : MonoBehaviour
             print($"Error: monster already in {name}");
             return;
         }
-        print($"Creating Monster: {monsterCardData.myMonster.monsterName}");
+        print($"Creating Monster: {monsterCardData.myMonster}");
 
         // Create a new monster
         GameObject monsterObject = Instantiate(monsterPrefab);
