@@ -2,7 +2,7 @@
 //
 // Data for an in-game deck. It can be shuffled and drawn from.
 // This deck does not randomize on start and restores its state on play start. 
-// DO NOT EDIT THE TEST DECK DURING RUNTIME.
+// Make sure to save it before using it so that you can restore it later.
 
 using System.Collections.Generic;
 using NaughtyAttributes;
@@ -55,6 +55,12 @@ public class TestDeck : InGameDeck
     // Callback called on play start.
     private void OnEnable()
     {
+        // Restore deck on play
+        if (originalDeck?.Count > 0)
+        {
+            RestoreDeck();
+        }
+
         // Only run editor commands if this is the editor -- this allows builds
         // to compile.
 #if UNITY_EDITOR
@@ -72,5 +78,6 @@ public class TestDeck : InGameDeck
             deck = new List<Card>(myDeck);
         }
 #endif
+
     }
 }

@@ -11,16 +11,16 @@ public class HandBehavior : MonoBehaviour
 {
     public Hand hand;
     public GameObject cardObject;
-    public Dictionary<int, GameObject> visibleCards;
+    public Dictionary<Card, GameObject> visibleCards;
 
     private void Start()
     {
-        visibleCards = new Dictionary<int, GameObject>();
+        visibleCards = new Dictionary<Card, GameObject>();
 
         // Add initial cards
-        foreach (Hand.UniqueCard uniqueCard in hand.cards)
+        foreach (Card card in hand.cards)
         {
-            CreateVisibleCard(uniqueCard.card, uniqueCard.id);
+            CreateVisibleCard(card);
         }
 
         // Subscribe to hand changes
@@ -37,7 +37,7 @@ public class HandBehavior : MonoBehaviour
     }
 
     // Create a new visible card and add it to the hand.
-    private void CreateVisibleCard(Card card, int id)
+    private void CreateVisibleCard(Card card)
     {
         // Make a new card object and add it to the hand.
         GameObject newCardObject = Instantiate(cardObject);
@@ -52,16 +52,16 @@ public class HandBehavior : MonoBehaviour
         newCardDisplayer.DisplayValues(card);
 
         // Add card to map
-        visibleCards.Add(id, newCardObject);
+        visibleCards.Add(card, newCardObject);
     }
 
     // Remove a visible vard based on its ID.
-    private void RemoveVisibleCard(int idToRemove)
+    private void RemoveVisibleCard(Card cardToRemove)
     {
-        if (visibleCards.TryGetValue(idToRemove, out GameObject visibleCard))
+        if (visibleCards.TryGetValue(cardToRemove, out GameObject visibleCard))
         {
             Destroy(visibleCard);
-            visibleCards.Remove(idToRemove);
+            visibleCards.Remove(cardToRemove);
         }
     }
 

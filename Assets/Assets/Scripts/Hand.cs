@@ -12,49 +12,51 @@ public abstract class Hand : ScriptableObject
 {
     public InGameDeck deck;
 
-    [Serializable]
-    public class UniqueCard
-    {
-        public Card card;
-        public readonly int id;
-        private static int uniqueIDCounter = 0;
+    // [Serializable]
+    // public class UniqueCard
+    // {
+    //     public Card card;
+    //     public readonly int id;
+    //     private static int uniqueIDCounter = 0;
 
-        // Code adapted from ChatGPT
-        private int GenerateUniqueID()
-        {
-            return uniqueIDCounter++;
-        }
+    //     // Code adapted from ChatGPT
+    //     private int GenerateUniqueID()
+    //     {
+    //         return uniqueIDCounter++;
+    //     }
 
-        public UniqueCard(Card card)
-        {
-            this.card = card;
-            this.id = GenerateUniqueID();
-        }
-    }
-    public List<UniqueCard> cards = new List<UniqueCard>();
-    public event Action<Card, int> cardAdded;
-    public event Action<int> cardRemoved;
+    //     public UniqueCard(Card card)
+    //     {
+    //         this.card = card;
+    //         this.id = GenerateUniqueID();
+    //     }
+    // }
+
+    [Expandable]
+    public List<Card> cards = new List<Card>();
+    public event Action<Card> cardAdded;
+    public event Action<Card> cardRemoved;
 
     // Add a card to the hand and notify subscribers
     // Pass UniqueCard to the subscribers. 
     public void AddCard(Card cardToAdd)
     {
-        UniqueCard newCard = new UniqueCard(cardToAdd);
-        cards.Add(newCard);
-        cardAdded?.Invoke(newCard.card, newCard.id);
+        if (cardToAdd != null)
+        {
+            cards.Add(cardToAdd);
+            cardAdded?.Invoke(cardToAdd);
+        }
     }
 
 
     // Removes a card from the hand and notify subscribers
     // Pass the id of the card that was removed.
-    public void RemoveCard(int idOfCardToRemove)
+    public void RemoveCard(Card cardToRemove)
     {
-        UniqueCard cardToRemove = cards.Find(card => card.id == idOfCardToRemove);
-
         if (cardToRemove != null)
         {
             cards.Remove(cardToRemove);
-            cardRemoved?.Invoke(idOfCardToRemove);
+            cardRemoved?.Invoke(cardToRemove);
         }
     }
 

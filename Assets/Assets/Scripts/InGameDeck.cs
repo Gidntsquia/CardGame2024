@@ -9,7 +9,8 @@ using UnityEngine;
 
 public abstract class InGameDeck : ScriptableObject
 {
-    [Expandable]
+    // "Expandable" is nice, but it throws errors sometimes.
+    // [Expandable]
     public List<Card> deck;
 
     // Get the top card off the deck.

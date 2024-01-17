@@ -2,9 +2,10 @@
 // 
 // Data for a player's hand, which holds cards that the player can play. This 
 // is a test hand, which can be created and edited in the editor for debugging.
-// It will reset to whatever it was originally saved on play stop.
+// Make sure to save it before using it so that you can restore it later.
 
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 // This creates an menu entry in the Unity editor when you right click in the 
@@ -12,40 +13,68 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "newTestHand", menuName = "Debug/TestHand", order = 1)]
 public class TestHand : Hand
 {
-    private List<UniqueCard> originalHand;
+    private List<Card> originalHand = new List<Card>();
 
-    // Save original test hand whenever any editor change is made (or the scene
-    // is loaded)
-    private void OnValidate()
+    // Callback called whenever changes are made in the inspector
+    //     private void OnValidate()
+    //     {
+    //         // Only run editor commands if this is the editor -- this allows builds
+    //         // to compile.
+    // #if UNITY_EDITOR
+
+    //         // Regenerate cards list to each have a unique ID.
+    //         List<UniqueCard> cardsWithIDs = new List<UniqueCard>();
+
+    //         foreach (UniqueCard uniqueCard in cards)
+    //         {
+    //             UniqueCard cardWithID = new UniqueCard(uniqueCard.card);
+    //             cardsWithIDs.Add(cardWithID);
+
+    //         }
+
+    //         cards = new List<UniqueCard>(cardsWithIDs);
+
+    // #endif
+    //     }
+
+    private void OnEnable()
     {
-        // Only run editor commands if this is the editor -- this allows builds
-        // to compile.
-#if UNITY_EDITOR
-        // Don't save hand during runtime.
-        if (!UnityEditor.EditorApplication.isPlaying)
+        // Restore hand on play
+        if (originalHand?.Count > 0)
         {
-            // Regenerate cards list to each have a unique ID.
-            List<UniqueCard> cardsWithIDs = new List<UniqueCard>();
+            RestoreHand();
+        }
 
-            foreach (UniqueCard uniqueCard in cards)
+#if UNITY_EDITOR
+        // Make each card unique.
+        if (UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode)
+        {
+            List<Card> uniqueCards = new List<Card>();
+            foreach (Card card in cards)
             {
-                UniqueCard cardWithID = new UniqueCard(uniqueCard.card);
-                cardsWithIDs.Add(cardWithID);
-
+                Card uniqueCard = Instantiate(card);
+                uniqueCards.Add(uniqueCard);
+                // Debug.Log(uniqueCard.inGameID);
             }
 
-            cards = new List<UniqueCard>(cardsWithIDs);
-            originalHand = new List<UniqueCard>(cardsWithIDs);
+            cards = new List<Card>(uniqueCards);
         }
+    }
 #endif
+
+
+    [Button]
+    private void SaveHand()
+    {
+        originalHand = new List<Card>(cards);
     }
 
-    // Restore original test hand
-    // This runs on scene start (for some reason--nothing we better we can do).
-    private void OnDisable()
+
+    [Button]
+    private void RestoreHand()
     {
-        // Debug.Log($"Restoring test hand: {name}");
-        cards = new List<UniqueCard>(originalHand);
+        cards = new List<Card>(originalHand);
     }
+
 
 }

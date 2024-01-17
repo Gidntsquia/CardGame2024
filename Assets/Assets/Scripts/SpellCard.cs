@@ -15,7 +15,8 @@ public class SpellCard : Card
         return $"Card Info:\n" +
                $"Mana Cost: {manaCost}\n" +
                $"Region: {region}\n" +
-               $"Flavor Text: {flavorText}\n";
+               $"Flavor Text: {flavorText}\n" +
+               $"ID: {inGameID}\n";
     }
 
 }

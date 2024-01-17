@@ -17,8 +17,9 @@ public class MonsterCard : Card
     public Monster baseMonsterSO;
     public Monster myMonster;
 
-    private void OnEnable()
+    public new void OnEnable()
     {
+        base.OnEnable();
         myMonster = Instantiate(baseMonsterSO);
         myMonster.name = this.name;
         myMonster.basePower = this.power;
@@ -45,7 +46,8 @@ public class MonsterCard : Card
                $"Power: {power}\n" +
                $"Health: {health}\n" +
                $"Region: {region}\n" +
-               $"Flavor Text: {flavorText}\n";
+               $"Flavor Text: {flavorText}\n" +
+               $"ID: {inGameID}\n";
     }
 
 }
