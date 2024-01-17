@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: TurboMonsterDestroyer
   m_EditorClassIdentifier: 
   manaCost: 8
+  cardAbilities: []
   region: 1
   flavorText: Destroy
   image: {fileID: 0}
   power: 10
   health: 9
+  baseMonsterSO: {fileID: 11400000, guid: 9944e0f112c944019a60a94dccae0a63, type: 2}
+  myMonster: {fileID: 0}

@@ -20,7 +20,7 @@ public class PlayerDeck : InGameDeck
         foreach (BaseDeck.CardAndCount cardAndCount in baseDeck.cards)
         {
             // Add all the cards to the deck
-            Card card = cardAndCount.card;
+            Card card = Instantiate(cardAndCount.card);
             int cardCount = cardAndCount.count;
             for (int i = 0; i < cardCount; i++)
             {

@@ -65,26 +65,29 @@ public class LaneBehavior : MonoBehaviour
     [Button]
     private void CreateTestMonsters()
     {
-        // Create hero monster
-        SummonMonster(heroTest, Player.Hero);
+        if (heroTest != null)
+        {
+            // Create hero monster
+            MonsterCard newHeroTest = Instantiate(heroTest);
+            SummonMonster(newHeroTest, Player.Hero);
 
-        // Create enemy monster
-        SummonMonster(enemyTest, Player.Enemy);
+            // Reset values
+            Monster heroTestMonster = GetMonsterOrNull(new PlaySpot(Player.Hero, Position.Front));
+            heroTestMonster.power = heroTestMonster.basePower;
+            heroTestMonster.health = heroTestMonster.baseHealth;
+        }
+        if (enemyTest != null)
+        {
+            // Create enemy monster
+            MonsterCard newEnemyTest = Instantiate(enemyTest);
+            SummonMonster(newEnemyTest, Player.Enemy);
 
-        // Create a new monster
-        // GameObject monsterObject = Instantiate(monsterPrefab);
+            // Reset values
+            Monster enemyTestMonster = GetMonsterOrNull(new PlaySpot(Player.Enemy, Position.Front));
+            enemyTestMonster.power = enemyTestMonster.basePower;
+            enemyTestMonster.health = enemyTestMonster.baseHealth;
+        }
 
-        // Set its parent based on the location
-        // Transform monsterSpot = player == Player.Hero ? heroMonsterSpot : enemyMonsterSpot;
-        // monsterObject.transform.SetParent(monsterSpot);
-
-        // Get the MonsterBehavior component and initialize it
-        // MonsterBehavior monster = monsterObject.GetComponent<MonsterBehavior>();
-        // monster.Initialize(heroTest);
-
-        // Lane.PlaySpot playerSpot = new Lane.PlaySpot(Lane.Player.Enemy, Lane.Position.Front);
-        // laneIdentity.laneMonsterMap[playerSpot] = monster;
-        // print(laneIdentity.laneMonsterMap[playerSpot].name);
     }
 
 

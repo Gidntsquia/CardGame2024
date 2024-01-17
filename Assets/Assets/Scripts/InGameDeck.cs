@@ -9,6 +9,7 @@ using UnityEngine;
 
 public abstract class InGameDeck : ScriptableObject
 {
+    [Expandable]
     public List<Card> deck;
 
     // Get the top card off the deck.

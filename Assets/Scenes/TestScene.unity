@@ -494,6 +494,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3080577238817770910, guid: fe279e3d5cc0643adb50e8b5becd9199, type: 3}
+      propertyPath: heroTest
+      value: 
+      objectReference: {fileID: 11400000, guid: 8020ca6222943404e8748204ff16518a, type: 2}
+    - target: {fileID: 3080577238817770910, guid: fe279e3d5cc0643adb50e8b5becd9199, type: 3}
+      propertyPath: laneIdentity
+      value: 
+      objectReference: {fileID: 11400000, guid: 5014925ae8c274a03b6bc76856694e05, type: 2}
     - target: {fileID: 5199047849597071682, guid: fe279e3d5cc0643adb50e8b5becd9199, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.1810026
@@ -536,11 +544,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8470521023305977796, guid: fe279e3d5cc0643adb50e8b5becd9199, type: 3}
       propertyPath: m_Name
-      value: Lane 1 (3)
+      value: Lane 2
       objectReference: {fileID: 0}
     - target: {fileID: 8470521023305977796, guid: fe279e3d5cc0643adb50e8b5becd9199, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
