@@ -51,13 +51,16 @@ public class TestDeck : InGameDeck
         deck = new List<Card>(originalDeck);
     }
 
-    // After restoring original deck, make each card unique.
+
+    // Callback called on play start.
     private void OnEnable()
     {
-        Debug.Log("Onenable");
+        // Only run editor commands if this is the editor -- this allows builds
+        // to compile.
+#if UNITY_EDITOR
+        // Make each card unique.
         if (UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode)
         {
-            Debug.Log("Making card unique");
             List<Card> myDeck = new List<Card>();
             foreach (Card card in deck)
             {
@@ -68,5 +71,6 @@ public class TestDeck : InGameDeck
 
             deck = new List<Card>(myDeck);
         }
+#endif
     }
 }
