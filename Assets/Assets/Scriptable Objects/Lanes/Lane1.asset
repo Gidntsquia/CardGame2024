@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Lane1
   m_EditorClassIdentifier: 
   leftNeighbor: {fileID: 0}
-  rightNeighbor: {fileID: 0}
+  rightNeighbor: {fileID: 11400000, guid: 5014925ae8c274a03b6bc76856694e05, type: 2}
   laneMonsterMap:
-    _serializedList: []
+    _serializedList:
+    - Key:
+        playerSide: 0
+        position: 0
+      Value: {fileID: 0}

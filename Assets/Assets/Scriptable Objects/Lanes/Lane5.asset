@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d474557b9cbb948fe931e3d673353606, type: 3}
   m_Name: Lane5
   m_EditorClassIdentifier: 
-  leftNeighbor: {fileID: 0}
+  leftNeighbor: {fileID: 11400000, guid: 0c86ca83bdd2d4b86b001779085060a7, type: 2}
   rightNeighbor: {fileID: 0}
   laneMonsterMap:
     _serializedList: []
