@@ -4,6 +4,15 @@
 // This deck does not randomize on start and restores its state on play start. 
 // Make sure to save it before using it so that you can restore it later.
 
+// How to use:
+// - Add cards to the test deck
+// - Click "SaveDeck" in the inspector
+// - On play, this code will make copies of the base cards that you added
+// - The copies will be "Type Mismatch" in the editor due to a Unity bug. They
+// work as normal, and you can double click them to see their values.
+// 
+// - Click "RestoreDeck" whenever you want to restore the saved state of the deck.
+
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
@@ -14,30 +23,6 @@ using UnityEngine;
 public class TestDeck : InGameDeck
 {
     private List<Card> originalDeck = new List<Card>();
-
-    // Save original test deck whenever any editor change is made (or the scene
-    // is loaded)
-    //     private void OnValidate()
-    //     {
-    //         // Only run editor commands if this is the editor -- this allows builds
-    //         // to compile.
-    // #if UNITY_EDITOR
-    //         // Don't save deck during runtime.
-    //         if (!UnityEditor.EditorApplication.isPlaying)
-    //         {
-    //             originalDeck = new List<Card>(deck);
-    //         }
-
-    // #endif
-    //     }
-
-    //     // Restore original test deck
-    //     // This runs on scene start (for some reason--nothing we better we can do).
-    //     private void OnDisable()
-    //     {
-    //         // Debug.Log($"Restoring test deck: {name}");
-    //         deck = new List<Card>(originalDeck);
-    //     }
 
     [Button]
     private void SaveDeck()

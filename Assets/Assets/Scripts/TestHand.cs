@@ -2,7 +2,17 @@
 // 
 // Data for a player's hand, which holds cards that the player can play. This 
 // is a test hand, which can be created and edited in the editor for debugging.
-// Make sure to save it before using it so that you can restore it later.
+// It restores its state on play start.  Make sure to save it before using it 
+// so that you can restore it later.
+
+// How to use:
+// - Add cards to the test hand
+// - Click "SaveHand" in the inspector
+// - On play, this code will make copies of the base cards that you added
+// - The copies will be "Type Mismatch" in the editor due to a Unity bug. They
+// work as normal, and you can double click them to see their values.
+// 
+// - Click "RestoreHand" whenever you want to restore the saved state of the hand.
 
 using System.Collections.Generic;
 using NaughtyAttributes;
@@ -14,28 +24,6 @@ using UnityEngine;
 public class TestHand : Hand
 {
     private List<Card> originalHand = new List<Card>();
-
-    // Callback called whenever changes are made in the inspector
-    //     private void OnValidate()
-    //     {
-    //         // Only run editor commands if this is the editor -- this allows builds
-    //         // to compile.
-    // #if UNITY_EDITOR
-
-    //         // Regenerate cards list to each have a unique ID.
-    //         List<UniqueCard> cardsWithIDs = new List<UniqueCard>();
-
-    //         foreach (UniqueCard uniqueCard in cards)
-    //         {
-    //             UniqueCard cardWithID = new UniqueCard(uniqueCard.card);
-    //             cardsWithIDs.Add(cardWithID);
-
-    //         }
-
-    //         cards = new List<UniqueCard>(cardsWithIDs);
-
-    // #endif
-    //     }
 
     private void OnEnable()
     {
