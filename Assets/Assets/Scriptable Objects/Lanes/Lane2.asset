@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftNeighbor: {fileID: 11400000, guid: 73c3de1fbda944cbbb06f037f7bfd215, type: 2}
   rightNeighbor: {fileID: 11400000, guid: 11e9dac3167a34c05b7576087440d944, type: 2}
+  heroHealth: {fileID: 11400000, guid: bf1d6eb18a1bb4af3b761be928ae9689, type: 2}
+  enemyHealth: {fileID: 11400000, guid: 0c30de2f353af430fb0e00c3253fbffe, type: 2}
   laneMonsterMap:
     _serializedList: []

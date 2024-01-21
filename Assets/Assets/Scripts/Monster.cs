@@ -3,15 +3,18 @@
 // Data for a monster, which has stats, can attack, and can die.
 
 using System;
+using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
+using static Lane;
 
 // This creates an menu entry in the Unity editor when you right click in the 
 // "Project" tab. It's called "CardSystem/Monster".
 [CreateAssetMenu(fileName = "newMonster", menuName = "CardSystem/Monster", order = 3)]
 public class Monster : ScriptableObject
 {
+    public List<CardAbility> abilities;
     public int basePower;
     public int baseHealth;
     public Image image;
@@ -22,11 +25,13 @@ public class Monster : ScriptableObject
     public int powerBuffs;
     public int healthBuffs;
     public bool isDead = false;
+    public Lane currLane;
+    public PlaySpot currPlaySpot;
 
     public event Action PowerChanged;
     public event Action HealthChanged;
-    public event Action OnDeath;
-    public event Action<Monster, Monster, PlayerHealth> AttackRequested;
+    public event Action DeathRequested;
+    public event Action<Lane> AttackRequested;
 
 
     // Buff the monster
@@ -56,16 +61,25 @@ public class Monster : ScriptableObject
         }
     }
 
-    public void Attack(Monster frontTarget, Monster backTarget, PlayerHealth faceTarget)
+    public void Attack(Lane laneToAttack)
     {
-        AttackRequested?.Invoke(frontTarget, backTarget, faceTarget);
+        AttackRequested?.Invoke(laneToAttack);
     }
 
     [Button]
     public void Kill()
     {
-        OnDeath.Invoke();
         Debug.Log($"Kill {name}");
+
+        // OnDeath?.Invoke();
+        abilities?.ForEach(ability => ability.OnDeath());
+
+        // Play some death animation
+
+        // Remove self from lane
+        currLane.laneMonsterMap.Remove(currPlaySpot);
+        DeathRequested?.Invoke();
+
     }
 
     // Use this to print out the values of this monster.

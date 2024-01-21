@@ -38,17 +38,22 @@ public class LaneBehavior : MonoBehaviour
         Transform monsterSpot = playSpot.playerSide == Player.Hero ? heroMonsterSpot : enemyMonsterSpot;
         monsterObject.transform.SetParent(monsterSpot);
 
+        // Initialize monster's location data
+        monsterCardData.myMonster.currLane = laneIdentity;
+        monsterCardData.myMonster.currPlaySpot = playSpot;
+
         // Get the MonsterBehavior component and initialize it
         MonsterBehavior monsterBehavior = monsterObject.GetComponent<MonsterBehavior>();
         monsterBehavior.Initialize(monsterCardData.myMonster);
 
+        // Get the MonsterDisplayer component and initialize it
         MonsterDisplayer monsterDisplayer = monsterObject.GetComponent<MonsterDisplayer>();
         monsterDisplayer.Initialize(monsterCardData.myMonster);
 
         // Store the monster in the dictionary
         laneIdentity.laneMonsterMap[playSpot] = monsterCardData.myMonster;
 
-        // Apply ability
+        // Apply OnPlay abilities
         monsterCardData.cardAbilities?.ForEach(ability => ability.OnPlay(monsterCardData.myMonster));
 
     }
@@ -72,7 +77,7 @@ public class LaneBehavior : MonoBehaviour
             SummonMonster(newHeroTest, Player.Hero);
 
             // Reset values
-            Monster heroTestMonster = GetMonsterOrNull(new PlaySpot(Player.Hero, Position.Front));
+            Monster heroTestMonster = laneIdentity.GetMonsterOrNull(new PlaySpot(Player.Hero, Position.Front));
             heroTestMonster.power = heroTestMonster.basePower;
             heroTestMonster.health = heroTestMonster.baseHealth;
         }
@@ -83,7 +88,7 @@ public class LaneBehavior : MonoBehaviour
             SummonMonster(newEnemyTest, Player.Enemy);
 
             // Reset values
-            Monster enemyTestMonster = GetMonsterOrNull(new PlaySpot(Player.Enemy, Position.Front));
+            Monster enemyTestMonster = laneIdentity.GetMonsterOrNull(new PlaySpot(Player.Enemy, Position.Front));
             enemyTestMonster.power = enemyTestMonster.basePower;
             enemyTestMonster.health = enemyTestMonster.baseHealth;
         }
@@ -122,15 +127,15 @@ public class LaneBehavior : MonoBehaviour
             if (monster == null)
                 return;
 
-            // Handle attacks based on the player
-            PlaySpot[] opponentPlaySpots = playSpot.GetOpponentPlaySpots();
+            // // Handle attacks based on the player
+            // PlaySpot[] opponentPlaySpots = playSpot.GetOpponentPlaySpots();
 
-            Monster opponentFrontMonster = GetMonsterOrNull(opponentPlaySpots[0]);
-            Monster opponentBackMonster = GetMonsterOrNull(opponentPlaySpots[1]);
-            PlayerHealth opponentHealth = playSpot.playerSide == Player.Hero ? heroHealthSystem : enemyHealthSystem;
+            // Monster opponentFrontMonster = GetMonsterOrNull(opponentPlaySpots[0]);
+            // Monster opponentBackMonster = GetMonsterOrNull(opponentPlaySpots[1]);
+            // PlayerHealth opponentHealth = playSpot.playerSide == Player.Hero ? heroHealthSystem : enemyHealthSystem;
 
             // Attack the opponent monsters or health
-            monster.Attack(opponentFrontMonster, opponentBackMonster, opponentHealth);
+            monster.Attack(laneIdentity);
             // switch (player)
             // {
             //     case Player.Hero:
@@ -168,16 +173,16 @@ public class LaneBehavior : MonoBehaviour
 
             Debug.Log($"{player} {location} has died: {monster}");
             monster.Kill();
-            laneIdentity.laneMonsterMap.Remove(playSpot);
+            // laneIdentity.laneMonsterMap.Remove(playSpot);
         }
     }
 
     // Returns either the monster in the playSpot or null if none is there.
-    private Monster GetMonsterOrNull(PlaySpot playSpot)
-    {
-        return laneIdentity.laneMonsterMap.TryGetValue(playSpot,
-            out Monster attemptedGetValue)
-            ? attemptedGetValue : null;
-    }
+    // private Monster GetMonsterOrNull(PlaySpot playSpot)
+    // {
+    //     return laneIdentity.laneMonsterMap.TryGetValue(playSpot,
+    //         out Monster attemptedGetValue)
+    //         ? attemptedGetValue : null;
+    // }
 
 }

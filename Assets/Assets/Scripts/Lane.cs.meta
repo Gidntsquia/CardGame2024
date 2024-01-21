@@ -3,7 +3,11 @@ guid: d474557b9cbb948fe931e3d673353606
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - leftNeighbor: {instanceID: 0}
+  - rightNeighbor: {instanceID: 0}
+  - heroHealth: {fileID: 11400000, guid: bf1d6eb18a1bb4af3b761be928ae9689, type: 2}
+  - enemyHealth: {fileID: 11400000, guid: 0c30de2f353af430fb0e00c3253fbffe, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -26,7 +26,7 @@ public class MonsterDisplayer : MonoBehaviour
 
         monsterIdentity.PowerChanged += UpdatePower;
         monsterIdentity.HealthChanged += UpdateHealth;
-        monsterIdentity.OnDeath += PlayDeathAnimation;
+        monsterIdentity.DeathRequested += PlayDeathAnimation;
     }
 
     // Play monster's sunmmoning animaiton.
@@ -73,6 +73,6 @@ public class MonsterDisplayer : MonoBehaviour
         // Clean up event subscriptions on destruction
         monsterIdentity.PowerChanged -= UpdatePower;
         monsterIdentity.HealthChanged -= UpdateHealth;
-        monsterIdentity.OnDeath -= PlayDeathAnimation;
+        monsterIdentity.DeathRequested -= PlayDeathAnimation;
     }
 }

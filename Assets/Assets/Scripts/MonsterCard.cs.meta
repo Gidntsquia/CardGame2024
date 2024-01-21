@@ -3,7 +3,10 @@ guid: 14b9b1fec0093478d993ee82bfce5aac
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - image: {instanceID: 0}
+  - baseMonsterSO: {fileID: 11400000, guid: 9944e0f112c944019a60a94dccae0a63, type: 2}
+  - myMonster: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

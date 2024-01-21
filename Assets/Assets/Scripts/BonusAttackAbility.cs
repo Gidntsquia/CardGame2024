@@ -6,15 +6,16 @@
 using UnityEngine;
 
 // This creates an menu entry in the Unity editor when you right click in the 
-// "Project" tab. It's called "CardSystem/CardAbilitys".
-[CreateAssetMenu(fileName = "newBuffSelfAbility", menuName = "Abilities/BuffSelfAbility", order = 2)]
+// "Project" tab. It's called Abilities/BonusAttackAbility".
+[CreateAssetMenu(fileName = "newBonusAttackAbility", menuName = "Abilities/BonusAttackAbility", order = 2)]
 public class BonusAttackAbility : CardAbility
 {
     public int numBonusAttacks = 1;
 
     public override void OnPlay(Monster monsterToDoBonusAttack)
     {
-
+        Debug.Log("Bonus ability triggered");
+        monsterToDoBonusAttack.Attack(monsterToDoBonusAttack.currLane);
     }
 
 

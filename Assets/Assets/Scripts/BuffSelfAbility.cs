@@ -6,8 +6,8 @@
 using UnityEngine;
 
 // This creates an menu entry in the Unity editor when you right click in the 
-// "Project" tab. It's called "CardSystem/CardAbilitys".
-[CreateAssetMenu(fileName = "newBuffSelfAbility", menuName = "Abilities/BuffSelfAbility", order = 2)]
+// "Project" tab. It's called "Abilities/BuffSelfAbility".
+[CreateAssetMenu(fileName = "newBuffSelfAbility", menuName = "Abilities/BuffSelfAbility", order = 1)]
 public class BuffSelfAbility : CardAbility
 {
     public int powerBuff;

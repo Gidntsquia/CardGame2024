@@ -15,6 +15,8 @@ public class Lane : ScriptableObject
 {
     public Lane leftNeighbor;
     public Lane rightNeighbor;
+    public PlayerHealth heroHealth;
+    public PlayerHealth enemyHealth;
 
     // The side the monster is on
     [Serializable]
@@ -32,6 +34,30 @@ public class Lane : ScriptableObject
         Back
     }
 
+    // Returns (Front, Back) PlaySpots of opposite side compared to the one given.
+    public static (PlaySpot, PlaySpot) GetOtherSidePlaySpots(Player playerSide)
+    {
+        // Set a default value-- this will be changed in a few lines
+        Player opponentSide = Player.Hero;
+
+        // Set opponentSide ot the opposite of whatever side this PlaySpot
+        // is on.
+        switch (playerSide)
+        {
+            case Player.Hero:
+                opponentSide = Player.Enemy;
+                break;
+            case Player.Enemy:
+                opponentSide = Player.Hero;
+                break;
+        }
+
+        PlaySpot opponentFront = new PlaySpot(opponentSide, Position.Front);
+        PlaySpot opponentBack = new PlaySpot(opponentSide, Position.Back);
+
+        return (opponentFront, opponentBack);
+    }
+
     // Place that a monster can be played. There are 4 possible spots.
     [Serializable]
     public class PlaySpot
@@ -45,27 +71,9 @@ public class Lane : ScriptableObject
             this.position = position;
         }
 
-        public PlaySpot[] GetOpponentPlaySpots()
+        public (PlaySpot, PlaySpot) GetOpponentPlaySpots()
         {
-            // Set a default value-- this will be changed in a few lines
-            Player opponentSide = Player.Hero;
-
-            // Set opponentSide ot the opposite of whatever side this PlaySpot
-            // is on.
-            switch (playerSide)
-            {
-                case Player.Hero:
-                    opponentSide = Player.Enemy;
-                    break;
-                case Player.Enemy:
-                    opponentSide = Player.Hero;
-                    break;
-            }
-
-            PlaySpot opponentFront = new PlaySpot(opponentSide, Position.Front);
-            PlaySpot opponentBack = new PlaySpot(opponentSide, Position.Back);
-
-            return new PlaySpot[] { opponentFront, opponentBack };
+            return GetOtherSidePlaySpots(playerSide);
         }
 
         public override bool Equals(object obj)
@@ -105,9 +113,33 @@ public class Lane : ScriptableObject
         laneMonsterMap.TryAdd(newPlaySpot, null);
     }
 
+
+    // Get the opponent's monsters in this lane in the order (front, back).
+    public (Monster, Monster) GetOpponentMonsters(Player playerSide)
+    {
+        (PlaySpot opponentFrontSpot, PlaySpot opponentBackSpot) = GetOtherSidePlaySpots(playerSide);
+
+        Monster opponentFrontMonster = GetMonsterOrNull(opponentFrontSpot);
+        Monster opponentBackMonster = GetMonsterOrNull(opponentBackSpot);
+
+
+        return (opponentFrontMonster, opponentBackMonster);
+    }
+
+
+    // Return either the monster in the PlaySpot or null if nothing is there.
+    public Monster GetMonsterOrNull(PlaySpot playSpot)
+    {
+        return laneMonsterMap.TryGetValue(playSpot,
+            out Monster attemptedGetValue)
+            ? attemptedGetValue : null;
+    }
+
     // Reset lane on game start.
     private void OnEnable()
     {
         laneMonsterMap.Clear();
     }
+
+
 }

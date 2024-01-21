@@ -5,6 +5,7 @@
 
 using NaughtyAttributes;
 using UnityEngine;
+using static Lane;
 
 public class MonsterBehavior : MonoBehaviour
 {
@@ -14,29 +15,32 @@ public class MonsterBehavior : MonoBehaviour
     public void Initialize(Monster monsterIdentity)
     {
         this.monsterIdentity = monsterIdentity;
-
         monsterIdentity.AttackRequested += Attack;
     }
 
     // Deal damage to the frontmost enemy, otherwise deal damage to the 
     // opponent's face.
-    public void Attack(Monster enemyFront, Monster enemyBack,
-                        PlayerHealth enemyHealthSystem)
+    public void Attack(Lane lane)
     {
-        if (enemyFront != null)
+        (Monster opponentFront, Monster opponentBack) =
+                    lane.GetOpponentMonsters(monsterIdentity.currPlaySpot.playerSide);
+        PlayerHealth opponentHealth = monsterIdentity.currPlaySpot.playerSide == Player.Hero
+                                        ? lane.enemyHealth : lane.heroHealth;
+
+        if (opponentFront != null)
         {
-            enemyFront.ReduceHealth(monsterIdentity.power);
+            opponentFront.ReduceHealth(monsterIdentity.power);
         }
-        else if (enemyBack != null)
+        else if (opponentBack != null)
         {
-            enemyFront.ReduceHealth(monsterIdentity.power);
+            opponentBack.ReduceHealth(monsterIdentity.power);
         }
         else
         {
-            enemyHealthSystem.TakeDamage(monsterIdentity.power);
+            opponentHealth.TakeDamage(monsterIdentity.power);
         }
-    }
 
+    }
 
 
     // Use this to print out the values of this card.

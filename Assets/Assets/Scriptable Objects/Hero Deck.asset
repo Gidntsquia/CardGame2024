@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Hero Deck
   m_EditorClassIdentifier: 
   deck:
-  - {fileID: 11400000, guid: 78cfac73c891c46cfa0e35fb5f2b1205, type: 2}
-  - {fileID: 11400000, guid: 78cfac73c891c46cfa0e35fb5f2b1205, type: 2}
-  - {fileID: 11400000, guid: 8020ca6222943404e8748204ff16518a, type: 2}
-  - {fileID: 11400000, guid: 78cfac73c891c46cfa0e35fb5f2b1205, type: 2}
-  - {fileID: 11400000, guid: 8020ca6222943404e8748204ff16518a, type: 2}
-  - {fileID: 11400000, guid: 8020ca6222943404e8748204ff16518a, type: 2}
-  - {fileID: 11400000, guid: 78cfac73c891c46cfa0e35fb5f2b1205, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   baseDeck: {fileID: 11400000, guid: 2218830dfd3f642afb3e461d6c172c1d, type: 2}

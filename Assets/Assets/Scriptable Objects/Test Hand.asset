@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deck: {fileID: 11400000, guid: 2c10727b4c5e741839a643708e07e36e, type: 2}
   cards:
-  - card: {fileID: 11400000, guid: 78cfac73c891c46cfa0e35fb5f2b1205, type: 2}
-  - card: {fileID: 11400000, guid: 78cfac73c891c46cfa0e35fb5f2b1205, type: 2}
-  - card: {fileID: 11400000, guid: 8020ca6222943404e8748204ff16518a, type: 2}
-  - card: {fileID: 11400000, guid: 11b629e8840c545faae97942bb42a82c, type: 2}
+  - {fileID: 11400000, guid: 78cfac73c891c46cfa0e35fb5f2b1205, type: 2}
+  - {fileID: 11400000, guid: 8020ca6222943404e8748204ff16518a, type: 2}
+  - {fileID: 11400000, guid: 11b629e8840c545faae97942bb42a82c, type: 2}
+  - {fileID: 11400000, guid: 56a310c4256974f0584b987e614edc61, type: 2}
+  - {fileID: 11400000, guid: 56a310c4256974f0584b987e614edc61, type: 2}
+  - {fileID: 11400000, guid: 56a310c4256974f0584b987e614edc61, type: 2}

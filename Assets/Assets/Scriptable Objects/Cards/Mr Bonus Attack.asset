@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14b9b1fec0093478d993ee82bfce5aac, type: 3}
+  m_Name: Mr Bonus Attack
+  m_EditorClassIdentifier: 
+  manaCost: 2
+  cardAbilities:
+  - {fileID: 11400000, guid: d8c539ea8bbd74a2991ae75260b6d4e0, type: 2}
+  region: 2
+  flavorText: Bonus!
+  image: {fileID: 0}
+  inGameID: 46
+  power: 2
+  health: 1
+  baseMonsterSO: {fileID: 11400000, guid: 9944e0f112c944019a60a94dccae0a63, type: 2}
+  myMonster: {fileID: 0}

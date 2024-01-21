@@ -22,6 +22,7 @@ public class MonsterCard : Card
         base.OnEnable();
         myMonster = Instantiate(baseMonsterSO);
         myMonster.name = this.name;
+        myMonster.abilities = this.cardAbilities;
         myMonster.basePower = this.power;
         myMonster.baseHealth = this.health;
         myMonster.power = this.power;
@@ -38,6 +39,7 @@ public class MonsterCard : Card
     {
         Debug.Log(myMonster.name);
     }
+
 
     public override string ToString()
     {
