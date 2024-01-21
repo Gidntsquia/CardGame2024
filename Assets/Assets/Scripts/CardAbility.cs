@@ -30,7 +30,6 @@ public abstract class CardAbility : ScriptableObject
         // Do nothing unless overridden
         // 
         // Abilities that use this:
-        // - Conjure
         // - Double Strike -- maybe have a second attack phase for just double strike guys
     }
 
@@ -87,7 +86,7 @@ public abstract class CardAbility : ScriptableObject
         // - Gravestone (2)
     }
 
-    public virtual void OnHitOpponent()
+    public virtual void OnHitFace()
     {
         // Do nothing unless overridden
         // 
@@ -95,7 +94,15 @@ public abstract class CardAbility : ScriptableObject
         // - Conjure
     }
 
-    public virtual void OnOpponentFront()
+    public virtual void OnDealDamage()
+    {
+        // Do nothing unless overridden
+        // 
+        // Abilities that use this:
+        // - Conjure (2)
+    }
+
+    public virtual void OnOpponentPlayedHere()
     {
         // Do nothing unless overridden
         // 
@@ -103,7 +110,7 @@ public abstract class CardAbility : ScriptableObject
         // - Anti-Hero (2)
     }
 
-    public virtual void OnOpponentStopsFront()
+    public virtual void OnAllOpponentLeavesHere()
     {
         // Do nothing unless overridden
         // 
