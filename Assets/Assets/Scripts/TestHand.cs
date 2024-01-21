@@ -61,15 +61,7 @@ public class TestHand : Hand
     [Button]
     private void RestoreHand()
     {
-        // for (int i = cards.Count - 1; i >= 0; i--)
-        // {
-        //     RemoveCard(cards[i]);
-        // }
-
-        // foreach (Card card in originalHand)
-        // {
-        //     AddCard(card);
-        // }
+        // TODO: Make this update the hand during runtime
         cards = new List<Card>(originalHand);
     }
 

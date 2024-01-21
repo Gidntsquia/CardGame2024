@@ -96,7 +96,6 @@ public class LaneBehavior : MonoBehaviour
     }
 
 
-
     // Do combat for this lane.
     // TODO: Turn this into an IEnumerator and make it a Coroutine f/ animations.
     [Button]
@@ -109,7 +108,7 @@ public class LaneBehavior : MonoBehaviour
         ProcessAttack(Player.Enemy, Position.Front);
         ProcessAttack(Player.Enemy, Position.Back);
 
-
+        // Only kill monsters after all of them have had a turn.
         ProcessDeath(Player.Hero, Position.Front);
         ProcessDeath(Player.Hero, Position.Back);
         ProcessDeath(Player.Enemy, Position.Front);
@@ -127,35 +126,7 @@ public class LaneBehavior : MonoBehaviour
             if (monster == null)
                 return;
 
-            // // Handle attacks based on the player
-            // PlaySpot[] opponentPlaySpots = playSpot.GetOpponentPlaySpots();
-
-            // Monster opponentFrontMonster = GetMonsterOrNull(opponentPlaySpots[0]);
-            // Monster opponentBackMonster = GetMonsterOrNull(opponentPlaySpots[1]);
-            // PlayerHealth opponentHealth = playSpot.playerSide == Player.Hero ? heroHealthSystem : enemyHealthSystem;
-
-            // Attack the opponent monsters or health
             monster.Attack(laneIdentity);
-            // switch (player)
-            // {
-            //     case Player.Hero:
-            //         monster.attack(laneMap.TryGetValue((Player.Enemy, Location.Front),
-            //                             out MonsterBehavior enemyFrontMonster) ? enemyFrontMonster : null,
-            //                         laneMap.TryGetValue((Player.Enemy, Location.Back),
-            //                             out MonsterBehavior enemyBackMonster) ? enemyBackMonster : null,
-            //                         enemyHealthSystem);
-            //         break;
-
-            //     case Player.Enemy:
-            //         monster.attack(laneMap.TryGetValue((Player.Hero, Location.Front),
-            //                             out MonsterBehavior heroFrontMonster) ? heroFrontMonster : null,
-            //                         laneMap.TryGetValue((Player.Hero, Location.Back),
-            //                             out MonsterBehavior heroBackMonster) ? heroBackMonster : null,
-            //                         heroHealthSystem);
-            //         break;
-            // }
-
-
         }
     }
 
@@ -173,16 +144,7 @@ public class LaneBehavior : MonoBehaviour
 
             Debug.Log($"{player} {location} has died: {monster}");
             monster.Kill();
-            // laneIdentity.laneMonsterMap.Remove(playSpot);
         }
     }
-
-    // Returns either the monster in the playSpot or null if none is there.
-    // private Monster GetMonsterOrNull(PlaySpot playSpot)
-    // {
-    //     return laneIdentity.laneMonsterMap.TryGetValue(playSpot,
-    //         out Monster attemptedGetValue)
-    //         ? attemptedGetValue : null;
-    // }
 
 }

@@ -15,6 +15,8 @@ public class BonusAttackAbility : CardAbility
     public override void OnPlay(Monster monsterToDoBonusAttack)
     {
         Debug.Log("Bonus ability triggered");
+
+        // Have the mosnter do an attack in its lane
         monsterToDoBonusAttack.Attack(monsterToDoBonusAttack.currLane);
     }
 

@@ -15,6 +15,8 @@ public class MonsterBehavior : MonoBehaviour
     public void Initialize(Monster monsterIdentity)
     {
         this.monsterIdentity = monsterIdentity;
+
+        // Subscribe to attack event
         monsterIdentity.AttackRequested += Attack;
     }
 

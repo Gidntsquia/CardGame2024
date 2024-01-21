@@ -71,10 +71,8 @@ public class Monster : ScriptableObject
     {
         Debug.Log($"Kill {name}");
 
-        // OnDeath?.Invoke();
+        // Apply OnDeath abilities
         abilities?.ForEach(ability => ability.OnDeath());
-
-        // Play some death animation
 
         // Remove self from lane
         currLane.laneMonsterMap.Remove(currPlaySpot);
