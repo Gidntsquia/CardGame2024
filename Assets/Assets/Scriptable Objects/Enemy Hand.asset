@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f9ce9d7a9ae04b50b59a2b37f8dd9a3, type: 3}
-  m_Name: Test Hand
+  m_Script: {fileID: 11500000, guid: 4b1436d9bd47649fe8b871d7348b2015, type: 3}
+  m_Name: Enemy Hand
   m_EditorClassIdentifier: 
-  deck: {fileID: 11400000, guid: 2c10727b4c5e741839a643708e07e36e, type: 2}
-  cards:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  deck: {fileID: 0}
+  cards: []

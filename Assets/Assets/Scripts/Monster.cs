@@ -14,6 +14,7 @@ using static Lane;
 [CreateAssetMenu(fileName = "newMonster", menuName = "CardSystem/Monster", order = 3)]
 public class Monster : ScriptableObject
 {
+    public MonsterCard monsterCardIdentity;
     public List<CardAbility> abilities;
     public int basePower;
     public int baseHealth;
@@ -28,9 +29,13 @@ public class Monster : ScriptableObject
     public Lane currLane;
     public PlaySpot currPlaySpot;
 
+    // // The hand corresponding to the player who controls this monster.
+    // public Hand hand;
+
     public event Action PowerChanged;
     public event Action HealthChanged;
     public event Action DeathRequested;
+    public event Action BounceRequested;
     public event Action<Lane> AttackRequested;
 
 
@@ -46,6 +51,20 @@ public class Monster : ScriptableObject
         PowerChanged?.Invoke();
         HealthChanged?.Invoke();
 
+    }
+
+
+    // Reset all buffs on monster
+    public void ResetBuffs()
+    {
+        powerBuffs = 0;
+        healthBuffs = 0;
+
+        power = basePower;
+        health = baseHealth;
+
+        PowerChanged?.Invoke();
+        HealthChanged?.Invoke();
     }
 
     // Reduce monster's health
@@ -74,10 +93,14 @@ public class Monster : ScriptableObject
         // Apply OnDeath abilities
         abilities?.ForEach(ability => ability.OnDeath());
 
-        // Remove self from lane
-        currLane.laneMonsterMap.Remove(currPlaySpot);
         DeathRequested?.Invoke();
 
+    }
+
+    [Button]
+    public void Bounce()
+    {
+        BounceRequested?.Invoke();
     }
 
     // Use this to print out the values of this monster.

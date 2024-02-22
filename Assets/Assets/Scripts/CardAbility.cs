@@ -9,6 +9,9 @@ using UnityEngine;
 // [CreateAssetMenu(fileName = "newCardAbility", menuName = "CardSystem/CardAbility", order = 2)]
 public abstract class CardAbility : ScriptableObject
 {
+    // public Monster[] potentialTargets;
+    // TargetPossiblities ENUM {Allies, enemies, all} 
+    // Conditions for targeting
 
     public virtual void OnPlay(Monster monsterToAffect)
     {

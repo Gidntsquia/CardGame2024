@@ -45,6 +45,7 @@ public abstract class Card : ScriptableObject
     private static int counter;
     [HideInInspector]
     public int inGameID = counter++;
+    public Hand myHand;
 
     // Override Equals method
     public override bool Equals(object obj)

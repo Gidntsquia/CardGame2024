@@ -27,6 +27,7 @@ public class MonsterDisplayer : MonoBehaviour
         monsterIdentity.PowerChanged += UpdatePower;
         monsterIdentity.HealthChanged += UpdateHealth;
         monsterIdentity.DeathRequested += PlayDeathAnimation;
+        monsterIdentity.BounceRequested += PlayBounceAnimation;
     }
 
     // Play monster's sunmmoning animaiton.
@@ -66,6 +67,15 @@ public class MonsterDisplayer : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void PlayBounceAnimation()
+    {
+        // Probably won't have any animation here, but I'll set it up in case
+        // we want it.
+
+        // Destroy self
+        Destroy(gameObject);
+    }
+
 
     // Callback called when this component is destroyed.
     private void OnDestroy()
@@ -74,5 +84,6 @@ public class MonsterDisplayer : MonoBehaviour
         monsterIdentity.PowerChanged -= UpdatePower;
         monsterIdentity.HealthChanged -= UpdateHealth;
         monsterIdentity.DeathRequested -= PlayDeathAnimation;
+        monsterIdentity.BounceRequested -= PlayBounceAnimation;
     }
 }

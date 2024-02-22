@@ -13,8 +13,8 @@ public class BounceAbility : CardAbility
 
     public override void OnPlay(Monster monsterToBounce)
     {
-        // monsterToBounce.
-
+        // Tell the monster's lane to bounce the monster.
+        monsterToBounce.currLane.RequestBounce(monsterToBounce.currPlaySpot);
     }
 
 

@@ -43,6 +43,7 @@ public abstract class Hand : ScriptableObject
     {
         if (cardToAdd != null)
         {
+            cardToAdd.myHand = this;
             cards.Add(cardToAdd);
             cardAdded?.Invoke(cardToAdd);
         }
@@ -53,8 +54,11 @@ public abstract class Hand : ScriptableObject
     // Pass the id of the card that was removed.
     public void RemoveCard(Card cardToRemove)
     {
+        Debug.Log("Trying to remove: " + cardToRemove);
         if (cardToRemove != null)
         {
+            Debug.Log("Removed!");
+
             cards.Remove(cardToRemove);
             cardRemoved?.Invoke(cardToRemove);
         }

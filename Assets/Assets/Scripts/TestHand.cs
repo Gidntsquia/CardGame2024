@@ -41,7 +41,9 @@ public class TestHand : Hand
             foreach (Card card in cards)
             {
                 Card uniqueCard = Instantiate(card);
+                uniqueCard.myHand = this;
                 uniqueCards.Add(uniqueCard);
+
                 // Debug.Log(uniqueCard.inGameID);
             }
 

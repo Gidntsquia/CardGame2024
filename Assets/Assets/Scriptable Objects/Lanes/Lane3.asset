@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d474557b9cbb948fe931e3d673353606, type: 3}
   m_Name: Lane3
   m_EditorClassIdentifier: 
+  heroHand: {fileID: 11400000, guid: ed64559cee5884e5c82c34b16e07743f, type: 2}
+  enemyHand: {fileID: 11400000, guid: abf35229e058e46c1a8cb302038f8f76, type: 2}
   leftNeighbor: {fileID: 11400000, guid: 5014925ae8c274a03b6bc76856694e05, type: 2}
   rightNeighbor: {fileID: 11400000, guid: 0c86ca83bdd2d4b86b001779085060a7, type: 2}
   heroHealth: {fileID: 11400000, guid: bf1d6eb18a1bb4af3b761be928ae9689, type: 2}

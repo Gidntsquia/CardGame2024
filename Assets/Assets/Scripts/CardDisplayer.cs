@@ -22,48 +22,13 @@ public class CardDisplayer : MonoBehaviour
 
     public void DisplayValues()
     {
-        // Code adapted from ChatGPT
-        switch (cardIdentity)
-        {
-            case MonsterCard monsterCard:
-                healthField.text = monsterCard.health.ToString();
-                powerField.text = monsterCard.power.ToString();
-                costField.text = monsterCard.manaCost.ToString();
-
-                // Display the image for the MonsterCard if available
-                if (monsterCard.image == null && nameField != null)
-                {
-                    nameField.text = monsterCard.name;
-                }
-                else
-                {
-
-                }
-                break;
-
-            case SpellCard spellCard:
-                costField.text = spellCard.manaCost.ToString();
-
-                // Display the image for the SpellCard if available
-                if (spellCard.image == null && nameField != null)
-                {
-                    nameField.text = spellCard.name;
-                }
-                else
-                {
-
-                }
-                break;
-
-            default:
-                Debug.LogError("Unknown card type");
-                break;
-        }
+        DisplayValues(cardIdentity);
     }
 
     public void DisplayValues(Card card)
     {
         cardIdentity = card;
+        gameObject.name = "Card Display: " + card.name;
         switch (card)
         {
             case MonsterCard monsterCard:

@@ -17,6 +17,15 @@ public class LaneBehavior : MonoBehaviour
     public MonsterCard heroTest;
     public MonsterCard enemyTest;
 
+    private void OnEnable()
+    {
+        laneIdentity.BounceRequested += BounceToHand;
+    }
+
+    private void OnDisable()
+    {
+        laneIdentity.BounceRequested -= BounceToHand;
+    }
 
 
     // Summon a monster at a particular location
@@ -53,6 +62,7 @@ public class LaneBehavior : MonoBehaviour
         // Store the monster in the dictionary
         laneIdentity.laneMonsterMap[playSpot] = monsterCardData.myMonster;
 
+        // TODO: Add targeting system for abilities
         // Apply OnPlay abilities
         monsterCardData.cardAbilities?.ForEach(ability => ability.OnPlay(monsterCardData.myMonster));
 
@@ -143,8 +153,61 @@ public class LaneBehavior : MonoBehaviour
                 return;
 
             Debug.Log($"{player} {location} has died: {monster}");
+
+            // Remove monster from lane monster map.
+            laneIdentity.laneMonsterMap.Remove(playSpot);
+
+            // Instruct monster to kill itself 😳
             monster.Kill();
         }
+    }
+
+    public void BounceToHand(PlaySpot monsterPlaySpot)
+    {
+        if (laneIdentity.laneMonsterMap.TryGetValue(monsterPlaySpot, out Monster monster))
+        {
+            Hand handDestination = null;
+
+            switch (monsterPlaySpot.playerSide)
+            {
+                case Player.Hero:
+                    handDestination = laneIdentity.heroHand;
+                    break;
+                case Player.Enemy:
+                    handDestination = laneIdentity.enemyHand;
+                    break;
+            }
+
+            // Add card back to hand.
+            monster.ResetBuffs();
+            monster.Bounce();
+            handDestination.AddCard(monster.monsterCardIdentity);
+
+            // Remove monster from lane monster map.
+            laneIdentity.laneMonsterMap.Remove(monsterPlaySpot);
+        }
+    }
+
+    // Finds the playspot of a monster in the lane monster map.
+    public PlaySpot FindMonster(Monster monster)
+    {
+        PlaySpot result = null;
+        foreach (PlaySpot playSpot in laneIdentity.laneMonsterMap.Keys)
+        {
+            if (laneIdentity.laneMonsterMap[playSpot] == monster)
+            {
+                result = playSpot;
+                break;
+            }
+
+        }
+
+        if (result == null)
+        {
+            throw new System.Exception("Couldn't find monster: " + monster);
+        }
+
+        return result;
     }
 
 }

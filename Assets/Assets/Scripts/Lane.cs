@@ -13,10 +13,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "newLane", menuName = "Lane", order = 5)]
 public class Lane : ScriptableObject
 {
+    public Hand heroHand;
+    public Hand enemyHand;
     public Lane leftNeighbor;
     public Lane rightNeighbor;
     public PlayerHealth heroHealth;
     public PlayerHealth enemyHealth;
+    public event Action<PlaySpot> BounceRequested;
 
     // The side the monster is on
     [Serializable]
@@ -133,6 +136,12 @@ public class Lane : ScriptableObject
         return laneMonsterMap.TryGetValue(playSpot,
             out Monster attemptedGetValue)
             ? attemptedGetValue : null;
+    }
+
+    // Returns a monster in a playspot back to the hand.
+    public void RequestBounce(PlaySpot playSpotToBounce)
+    {
+        BounceRequested?.Invoke(playSpotToBounce);
     }
 
     // Reset lane on game start.

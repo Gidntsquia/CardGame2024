@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c62222e817f4b3183e4078a08ab519, type: 3}
   m_Name: Hero Mana
   m_EditorClassIdentifier: 
-  maxTurnMana: 5
-  currMana: 0
+  maxTurnMana: 20
+  currMana: 20

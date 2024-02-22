@@ -60,7 +60,7 @@ public class HandBehavior : MonoBehaviour
     {
         if (visibleCards.TryGetValue(cardToRemove, out GameObject visibleCard))
         {
-            Destroy(visibleCard);
+            // Destroy(visibleCard);
             visibleCards.Remove(cardToRemove);
         }
     }

@@ -46,6 +46,9 @@ public class CardBehavior : MonoBehaviour
                 {
                     print($"Play monster to {currLane.name}");
 
+                    // Remove card from hand
+                    cardIdentity.myHand.RemoveCard(cardIdentity);
+
                     // Play the card
                     currLane.SummonMonster(monsterCard, Lane.Player.Hero);
                     Destroy(gameObject);

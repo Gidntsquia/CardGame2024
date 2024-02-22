@@ -9,13 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f9ce9d7a9ae04b50b59a2b37f8dd9a3, type: 3}
-  m_Name: Test Hand
+  m_Script: {fileID: 11500000, guid: 765a765eaaff04e69903a234884a7afd, type: 3}
+  m_Name: Bounce Self
   m_EditorClassIdentifier: 
-  deck: {fileID: 11400000, guid: 2c10727b4c5e741839a643708e07e36e, type: 2}
-  cards:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  potentialTargets: []

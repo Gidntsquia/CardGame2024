@@ -1,7 +1,6 @@
 // Code written by Jaxon Lee
 // 
-// Data for one monster card, which can be summoned in a lane, attack, and die
-// once it's health goes to 0.
+// Data for one monster card, which can be summoned to a lane and save buffs.
 
 using NaughtyAttributes;
 using UnityEngine;
@@ -14,6 +13,7 @@ public class MonsterCard : Card
     public int power = 1;
     public int health = 1;
 
+    // TODO: Better way to instantiate a blank scriptable object?
     public Monster baseMonsterSO;
     public Monster myMonster;
 
@@ -31,6 +31,7 @@ public class MonsterCard : Card
         myMonster.powerBuffs = 0;
         myMonster.healthBuffs = 0;
         myMonster.isDead = false;
+        myMonster.monsterCardIdentity = this;
 
     }
 
