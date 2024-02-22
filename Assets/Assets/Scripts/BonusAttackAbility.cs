@@ -1,7 +1,6 @@
 // Code written by Jaxon Lee
 // 
-// Data for a buff self card effect, which increases the power and health of the
-// monster.
+// Data for a bonus attack effect, which has a monster do an attack in its lane.
 
 using UnityEngine;
 
@@ -16,8 +15,12 @@ public class BonusAttackAbility : CardAbility
     {
         Debug.Log("Bonus ability triggered");
 
-        // Have the mosnter do an attack in its lane
-        monsterToDoBonusAttack.Attack(monsterToDoBonusAttack.currLane);
+        for (int i = 0; i < numBonusAttacks; i++)
+        {
+            // Have the mosnter do an attack in its lane
+            monsterToDoBonusAttack.Attack(monsterToDoBonusAttack.currLane);
+        }
+
     }
 
 
